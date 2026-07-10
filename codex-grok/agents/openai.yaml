@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Grok"
+  short_description: "Sol orchestrates while Grok implements"
+  default_prompt: "Use $codex-grok to plan, delegate, implement, and verify this task."
