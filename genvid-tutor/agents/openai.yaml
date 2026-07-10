@@ -1,0 +1,4 @@
+interface:
+  display_name: "GenVid Tutor"
+  short_description: "Create animated teaching videos for any topic"
+  default_prompt: "Use $genvid-tutor to create a clear animated teaching video with synchronized narration and a rendered MP4."

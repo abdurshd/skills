@@ -1,0 +1,4 @@
+interface:
+  display_name: "GenVid Promo"
+  short_description: "Generate polished product promotion videos"
+  default_prompt: "Use $genvid-promo to create a polished product promotion video with verified UI, synchronized narration, and a rendered MP4."

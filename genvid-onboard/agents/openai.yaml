@@ -1,0 +1,4 @@
+interface:
+  display_name: "GenVid Onboard"
+  short_description: "Create exact product onboarding walkthroughs"
+  default_prompt: "Use $genvid-onboard to create a detailed product onboarding walkthrough using verified UI and synchronized narration."
