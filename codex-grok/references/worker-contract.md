@@ -37,9 +37,12 @@ VERIFICATION
 
 SAFETY
 - Preserve existing user changes.
+- Use file-editing tools for authored file changes. Do not write files through shell redirection, heredocs, `tee`, `sed -i`, or scripted writers.
+- Use shell commands for read-only inspection and verification. Run a scoped project formatter only when the prompt explicitly permits its writes.
 - Do not commit, push, merge, deploy, publish, or mutate external production state.
 - Do not expose secrets.
 - Do not use destructive Git commands.
+- Complete the requested verification before returning.
 
 RETURN
 Report:
@@ -57,6 +60,9 @@ Report:
 - Assign tests with the implementation they validate when possible.
 - Give integration files to a final sequential worker after parallel leaf work lands.
 - Never let two workers modify the same file concurrently.
+- Keep prompts and result files in a session-scoped directory inside the repository so the Codex workspace sandbox can create and inspect them.
+- Treat the Codex `workspace-write` sandbox as the hard filesystem boundary. The Grok CLI runs with `bypassPermissions` only inside that boundary so headless edit and verification tools do not stall on interactive prompts.
+- Preserve the wrapper's explicit denials for `git push`, `git commit`, `git reset`, and destructive recursive removal. Request a narrow host approval if work genuinely needs an operation outside those boundaries.
 
 ## Fixer prompts
 

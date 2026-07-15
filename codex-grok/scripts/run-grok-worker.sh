@@ -32,8 +32,8 @@ args=(
   --max-turns 80
   --no-subagents
   --no-memory
-  --check
-  --permission-mode acceptEdits
+  --rules 'Use file-editing tools for authored file changes. Do not write files through shell redirection, heredocs, tee, sed -i, or scripted writers. Complete the prompt-required verification before returning.'
+  --permission-mode bypassPermissions
   --deny 'Bash(git push*)'
   --deny 'Bash(git commit*)'
   --deny 'Bash(git reset*)'
@@ -47,5 +47,19 @@ if [[ "$dry_run" == true ]]; then
   exit 0
 fi
 
-"${args[@]}" >"$result_file"
+tmp_result="${result_file}.tmp.$$"
+cleanup() {
+  rm -f -- "$tmp_result"
+}
+trap cleanup EXIT HUP INT TERM
+
+"${args[@]}" >"$tmp_result"
+[[ -s "$tmp_result" ]] || { printf 'Grok worker returned an empty result\n' >&2; exit 1; }
+if grep -Eq '"stopReason"[[:space:]]*:[[:space:]]*"Cancelled"' "$tmp_result"; then
+  printf 'Grok worker was cancelled before completing the prompt\n' >&2
+  exit 1
+fi
+
+mv -f -- "$tmp_result" "$result_file"
+trap - EXIT HUP INT TERM
 printf 'Grok worker result: %s\n' "$result_file"

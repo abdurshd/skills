@@ -16,6 +16,20 @@ command -v grok >/dev/null 2>&1 || fail "Grok Build CLI is not installed"
 
 codex_version="$(codex --version 2>&1 | tail -n 1)"
 grok_version="$(grok version 2>&1 | tail -n 1)"
+codex_exec_help="$(codex exec --help 2>&1)"
+grok_help="$(grok --help 2>&1)"
+
+for required_flag in --sandbox --add-dir --ephemeral --output-last-message; do
+  grep -q -- "$required_flag" <<<"$codex_exec_help" ||
+    fail "Codex CLI does not support required option: $required_flag"
+done
+
+for required_flag in --cwd --model --reasoning-effort --prompt-file --output-format --max-turns --no-subagents --no-memory --rules --permission-mode --deny; do
+  grep -q -- "$required_flag" <<<"$grok_help" ||
+    fail "Grok Build CLI does not support required option: $required_flag"
+done
+grep -q -- 'bypassPermissions' <<<"$grok_help" ||
+  fail "Grok Build CLI does not support the required bypassPermissions worker policy"
 
 models_cache="${CODEX_HOME:-$HOME/.codex}/models_cache.json"
 [[ -f "$models_cache" ]] || fail "Codex model cache is missing at $models_cache"
@@ -38,6 +52,11 @@ models_output="$(grok models 2>&1 || true)"
 if grep -qiE 'not authenticated|reauthentication required|no auth credentials|token expired' <<<"$models_output"; then
   fail "Grok authentication is unavailable; run: grok login --oauth"
 fi
-grep -q 'grok-4.5' <<<"$models_output" || fail "grok-4.5 is not available to the authenticated Grok account"
+if grep -qiE 'failed to fetch models|settings fetch failed|could not resolve|failed to lookup address|network\(' <<<"$models_output"; then
+  fail "Grok model discovery could not reach the Grok service; verify sandbox DNS/HTTPS access"
+fi
+available_models="$(sed -n '/^Available models:/,$p' <<<"$models_output")"
+grep -Eq '^[[:space:]]*[*-]?[[:space:]]*grok-4\.5([[:space:](]|$)' <<<"$available_models" ||
+  fail "grok-4.5 is not listed in the authenticated Grok account's available models"
 
 printf 'Live preflight passed.\n'

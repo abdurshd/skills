@@ -12,8 +12,15 @@ Keep GPT-5.6 Sol's context focused on decomposition, judgment, and verification.
 - Orchestrator: `gpt-5.6-sol` with `model_reasoning_effort="xhigh"`.
 - Workhorse: `grok-4.5` with `--reasoning-effort high`.
 - Never substitute another model or effort silently.
-- Run `scripts/preflight.sh` before planning. If live Grok authentication or model access fails, stop and ask the user to run `grok login --oauth`.
+- Run `scripts/preflight.sh` before planning. In Codex Desktop, if the only failure is sandbox DNS/HTTPS access to Grok, rerun the preflight through the host tool's narrow escalation flow. If live authentication or model access still fails outside that sandbox boundary, stop and ask the user to run `grok login --oauth`.
 - If the active session is not verifiably GPT-5.6 Sol xhigh, relaunch through `scripts/launch-orchestrator.sh <repo-root> <objective-file> <result-file>`. The child prompt marks itself as already active to prevent recursive relaunches.
+- Keep the child Codex sandbox at `workspace-write`. The launcher may add only the authenticated Grok state directory as an extra writable root.
+
+## Codex Desktop launcher boundary
+
+Try the orchestrator launcher normally first. In Codex Desktop, the outer app sandbox may reject nested Codex startup with a read-only `~/.codex/state_5.sqlite` or `failed to initialize in-process app-server client: Operation not permitted`. If that exact boundary appears, rerun only the outer launcher command through the host tool's explicit escalation flow.
+
+This outer approval lets the nested CLI initialize its own state. It does not authorize `danger-full-access` or a broader filesystem sandbox. The launcher continues to pin `workspace-write`, exposes only `${GROK_HOME:-$HOME/.grok}` for authenticated Grok session state, and enables workspace-sandbox network access because Grok model discovery and worker calls require DNS/HTTPS. Inside that hard OS boundary, the Grok worker uses its own `bypassPermissions` prompt policy so dedicated edit tools and task-specific verification commands can run headlessly. The wrapper's explicit deny rules still block Git publication, history rewriting, and destructive recursive removal.
 
 ## Role boundary
 
@@ -26,6 +33,7 @@ Codex may:
 - run tests, typechecks, builds, linters, browser/device checks, and read-only diagnostics;
 - inspect targeted code and diffs;
 - accept, reject, or refine worker output.
+- repair this skill's own instructions, scripts, references, or metadata when the user explicitly asks for skill maintenance.
 
 Codex must not:
 
@@ -35,6 +43,8 @@ Codex must not:
 - trust a worker's completion claim without checking the actual checkout.
 
 Codex may write only orchestration artifacts such as a plan file and temporary prompt/report files. Send every product-code correction to a fresh Grok worker.
+
+The product-code restriction does not prevent Codex from maintaining the `codex-grok` skill itself when explicitly requested.
 
 ## Workflow
 
@@ -57,9 +67,9 @@ If two workstreams need the same file, sequence them. Never rely on workers to m
 
 ### 3. Prepare worker prompts
 
-Read [references/worker-contract.md](references/worker-contract.md). Write one prompt file per workstream under a session-scoped temporary directory. Include repo root, branch, plan path, assigned section, exclusive file ownership, current state, acceptance criteria, tests, safety limits, and the required report format.
+Read [references/worker-contract.md](references/worker-contract.md). Write one prompt file per workstream under a session-scoped directory inside the repository, such as `<repo-root>/.codex-grok/sessions/<session-id>/`. Do not place patch-created orchestration artifacts in `/tmp` or another path outside the child workspace. Include repo root, branch, plan path, assigned section, exclusive file ownership, current state, acceptance criteria, tests, safety limits, and the required report format.
 
-Tell each worker that all current code and other worker output are untrusted until inspected. Tell it to modify only owned files and to stop rather than cross ownership boundaries.
+Tell each worker that all current code and other worker output are untrusted until inspected. Tell it to modify only owned files and to stop rather than cross ownership boundaries. Require it to use file-editing tools for authored changes instead of shell redirection, heredocs, `tee`, `sed -i`, or scripted file writers. Require focused verification before it returns.
 
 ### 4. Delegate to Grok
 
@@ -69,9 +79,9 @@ Launch workers with:
 scripts/run-grok-worker.sh <repo-root> <prompt-file> <result-json>
 ```
 
-The wrapper pins `grok-4.5`, high effort, bounded headless execution, self-checking, and no Grok subagents. Launch independent workstreams concurrently through separate tool calls; do not use unmanaged background shell jobs. Run dependent workstreams sequentially.
+The wrapper pins `grok-4.5`, high effort, bounded headless execution, prompt-mandated verification, and no Grok subagents. The current Grok CLI rejects `--check` together with `--no-subagents`, so preserve `--no-subagents` and keep verification in the worker contract and wrapper rules. Launch independent workstreams concurrently through separate tool calls; do not use unmanaged background shell jobs. Run dependent workstreams sequentially.
 
-If a worker requires an approval the wrapper cannot safely grant, pause and request the narrow approval. Never retry with `bypassPermissions` or `--always-approve` merely to avoid a prompt.
+Do not replace the layered boundary with a direct, unsandboxed Grok launch. Grok's `bypassPermissions` mode is permitted only when the worker process is running inside the launcher's pinned Codex `workspace-write` sandbox and the wrapper deny rules remain present. If the OS sandbox itself blocks a required path or external operation, pause and request the narrow approval instead of broadening the sandbox silently.
 
 ### 5. Verify
 
