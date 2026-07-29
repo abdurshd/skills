@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unslopify"
+  short_description: "Remove AI-design tells without losing identity"
+  default_prompt: "Use $unslopify to audit and improve this website so it feels authored, specific, and production-ready."

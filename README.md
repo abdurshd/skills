@@ -1,6 +1,6 @@
-# Claude Code skills — a cross-agent build pipeline
+# Agent skills — a cross-agent build pipeline
 
-A small set of [Claude Code](https://claude.com/claude-code) skills for planning, implementing, reviewing, and shipping code with more than one model in the loop. Each skill is a folder with a `SKILL.md`; drop the folders into your skills directory and invoke them as slash commands.
+A set of portable [Agent Skills](https://agentskills.io/) for planning, implementation, review, design, and shipping. Each portable skill is a self-contained folder with a standard `SKILL.md`; client-specific skills are labeled below.
 
 ## The skills
 
@@ -12,6 +12,7 @@ A small set of [Claude Code](https://claude.com/claude-code) skills for planning
 | **codex-review** | Send an implementation *plan* to the Codex CLI for an iterative second-opinion review; revise and re-submit until Codex approves. `fable-opus-codex` reuses its mechanics for reviewing finished code. |
 | **fix-findings** | Process a pasted findings list from an external reviewer the right way: verify each finding against the *current* code, fix the confirmed ones, rebut stale/intentional ones, and report per-finding outcomes. |
 | **i18n-sweep** | Hunt both kinds of i18n gaps — catalog key drift across locales AND hardcoded user-facing strings that never became keys — then fill every gap with native-quality translations and verify. |
+| **unslopify** | Audit or improve AI-looking websites through product-specific direction, anti-pattern evidence, real browser verification, and an optional portable Impeccable detector bridge. |
 
 ## How they chain
 
@@ -27,15 +28,25 @@ Typical flow for a large feature: `/fable-opus-codex <plan or description>` to b
 
 ## Install
 
-Copy the skill folders into your Claude Code skills directory:
+Copy any portable skill folder unchanged into a skills directory discovered by your agent. The open format requires only the folder and its `SKILL.md`; bundled scripts and references must travel with it.
 
 ```bash
-cp -r ship fable-opus fable-opus-codex codex-review fix-findings i18n-sweep ~/.claude/skills/
+# Shared Agent Skills location used by compatible clients
+mkdir -p ~/.agents/skills/
+cp -r ship fix-findings i18n-sweep unslopify ~/.agents/skills/
+
+# Claude Code personal skills
+mkdir -p ~/.claude/skills/
+cp -r ship fix-findings i18n-sweep unslopify ~/.claude/skills/
+
+# Codex personal skills
+mkdir -p ~/.codex/skills/
+cp -r ship fix-findings i18n-sweep unslopify ~/.codex/skills/
 ```
 
-They then appear as `/ship`, `/fable-opus`, `/fable-opus-codex`, `/codex-review`, `/fix-findings`, and `/i18n-sweep`.
+Cursor and other Agent Skills clients can import the same folders into their project or personal skills location. Invocation syntax is client-owned—for example, `/unslopify` in Claude Code and `$unslopify` in Codex—while automatic activation uses the same `name` and `description`.
 
-`ship`, `fix-findings`, and `i18n-sweep` are agent-agnostic — they also work in other agents that read the `SKILL.md` format (Codex: `~/.codex/skills/`, Cursor: `~/.cursor/skills/`, Antigravity: `~/.gemini/antigravity/skills/`). The `fable-opus*` skills are Claude Code-specific (they orchestrate Claude subagents).
+`ship`, `fix-findings`, `i18n-sweep`, and `unslopify` are agent-agnostic. Product-specific metadata such as `agents/openai.yaml` is optional and ignored by clients that do not use it. The `fable-opus*` skills remain Claude Code-specific because they orchestrate Claude subagents.
 
 ## Requirements
 
