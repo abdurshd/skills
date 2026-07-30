@@ -1,6 +1,6 @@
 ---
 name: fix-findings
-description: Take a pasted findings list from an external reviewer (another AI agent, a PR review bot, or a security audit - typically "Findings P1/P2..." format) and process it properly - verify each finding is real in the current code, fix the confirmed ones, rebut the stale or intentional ones, and report per-finding outcomes. Use when the user pastes reviewer findings, says "codex found these issues", "fix those things", or invokes /fix-findings.
+description: Processes a pasted findings list from an external reviewer, PR review bot, security audit, or coding agent by verifying every claim against current code, fixing confirmed defects, rebutting stale or intentional findings, and reporting per-finding outcomes. Use when the user pastes P1/P2-style findings, says an agent found issues, asks to fix a review, or requests the fix-findings skill.
 ---
 
 # Fix external reviewer findings
@@ -18,7 +18,7 @@ For every finding, before touching anything:
 2. Classify:
    - **CONFIRMED** — the defect is real, right now, in this tree.
    - **STALE** — it was real once but is already fixed (check git log/blame for the fix if useful).
-   - **INTENTIONAL** — the behavior is a documented decision. Check the project's AGENTS.md / CLAUDE.md "Key decisions" section and any memory/audit docs; some tradeoffs are deliberate and must NOT be "fixed".
+   - **INTENTIONAL** — the behavior is a documented decision. Check `AGENTS.md`, `CLAUDE.md`, client-specific project instructions, and relevant decision/audit docs; some tradeoffs are deliberate and must NOT be "fixed".
    - **WRONG** — the reviewer misread the code.
    - **UNVERIFIABLE** — cannot be located/reproduced from the description.
 3. Do not broaden scope: fix exactly the issue set given, not everything you notice along the way. (Note genuinely serious unrelated discoveries at the end instead.)

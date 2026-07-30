@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Commit, push, and ship the current work with a consistent, safe ritual — survey the diff, clean gitignore, short commits with no AI attribution, then the requested delivery mode. Use when the user says "commit", "push", "ship", "merge to main", "make a PR", or invokes /ship. Modes via args - (none) commit+push current branch; "migrate" run DB migrations then push; "merge" merge to main and return to this branch; "pr" new branch + PR to main; "review" fetch and address PR review comments.
+description: Commits, pushes, and ships the current work with a consistent, safe ritual that surveys the diff, cleans gitignore, uses short commits with no agent attribution, and runs the requested delivery mode. Use when the user says "commit", "push", "ship", "merge to main", "make a PR", requests the ship skill, or asks to address PR review comments. Supports commit-and-push, migrations, mainline merges, pull requests, and review-comment modes.
 ---
 
 # Ship
@@ -50,4 +50,4 @@ For when another reviewer (human or an AI review bot) leaves comments:
 
 - "push" often means commit + push, not just push.
 - If the user chained extra steps in the same request ("...and apply the same change to <other project>"), finish shipping FIRST, then do the extra steps — chained trailing steps are easy to drop.
-- If a pre-merge review step is part of the workflow (e.g. `/codex-review`), run it and only ship when it passes.
+- If a pre-merge review step is part of the workflow (for example, the `codex-review` skill), run it and only ship when it passes.

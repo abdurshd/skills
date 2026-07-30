@@ -1,54 +1,100 @@
 ---
 name: fable-opus
-description: Fable 5 orchestrates, Opus 4.8 implements. Fable plans and supervises but never writes code itself - all implementation is delegated to Opus 4.8 subagents (xhigh effort for code, high for browser tasks), then Fable verifies against the plan and spawns Opus fixers until everything is done. Use when the user invokes /fable-opus, says "implement this plan with opus subagents", "you orchestrate, opus implements", or wants a large plan executed without the main session burning tokens on implementation.
+description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5 as orchestrator and Opus 4.8 as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
 ---
 
-# Fable orchestrates, Opus implements
+# Orchestrator delegates, workers implement
 
-A big-feature pipeline where the main session (Fable 5, high effort) is the planner, orchestrator, and inspector, and Opus 4.8 subagents do the hands-on coding. The orchestrator writes NO implementation code itself and keeps its own token spend minimal.
+Keep the active agent's context focused on decomposition, cross-workstream judgment, and verification. Delegate implementation edits to isolated workers. `fable-opus` is the default pairing and historical shorthand, not a host lock.
 
-Why split this way: Fable 5 is strong at planning, decomposition, and judgment; Opus 4.8 at xhigh is strong at careful implementation. Keeping the orchestrator out of the code keeps its context clean for supervision and avoids spending the expensive planning model on mechanical edits.
+## Agent selection
 
-## Preconditions
+Resolve roles before planning:
 
-- The session model should be Fable 5. If it isn't (check which model you are), tell the user to switch with `/model` and re-invoke — don't run this pipeline as the implementer model.
-- Args may name a plan file, a pasted findings list, or a feature description. All three work; they just enter at different steps.
+1. Use any orchestrator, worker tool, CLI, or model explicitly named by the user.
+2. Otherwise use compatible project or session configuration.
+3. Otherwise default to Fable 5 at high effort for orchestration and Opus 4.8 at xhigh effort for code implementation.
 
-## Step 1 — Plan (skip if a plan file already exists)
+For browser-driving or computer-use work, default the worker to high effort rather than xhigh. Map effort names to the closest supported setting without increasing cost or depth beyond the user's request.
 
-Produce a **written plan file in the repo root** (e.g. `FEATURE_X_PLAN.md`), not just a chat message. It must contain:
-- Numbered phases/workstreams sized so one Opus agent can finish one workstream in one run.
-- Per workstream: the exact file list it will create/modify, what "done" means, and any contracts shared with other workstreams (types, function signatures) spelled out in full so parallel agents don't drift.
-- Which workstreams are independent (parallel) vs dependent (sequential).
+Use the host's native isolated-worker or parallel-agent capability when it can select the requested model. Otherwise use the selected coding agent's authenticated non-interactive CLI in the repository. Claude Code, Codex, Cursor, and other Agent Skills clients may all host the orchestration.
 
-For large scopes, show the plan and wait for the user's green light before spawning agents. Between phases the user often wants a commit (see the companion `ship` skill).
+Never silently replace a user-selected agent or model. If the named choice is unavailable, report the missing capability and stop. If only a default model is unavailable, declare the closest configured isolated worker before continuing.
 
-## Step 2 — Delegate to Opus
+## Role boundary
 
-Spawn implementers with the Agent tool: `subagent_type: "general-purpose"`, `model: "opus"`. Launch independent workstreams in parallel (one message, multiple Agent calls). Every agent prompt MUST include:
+The orchestrator may inspect, plan, partition ownership, dispatch workers, run verification, and assess results. It must not write product implementation code while this delegated pipeline is active.
 
-1. Repo root and current branch.
-2. The plan file path + exactly which sections to read first.
-3. **FILE OWNERSHIP**: "you may ONLY modify/create these files — other agents are working in parallel on <other areas>; don't touch those." Disjoint ownership is what makes parallelism safe; if two workstreams need the same file, sequence them instead.
-4. Current state of the code: "all landed and green — verify by reading, don't assume."
-5. Acceptance criteria + instruction to run typecheck/tests scoped to its files before returning, and to report what it changed and anything it could not finish.
+Workers may edit only their assigned files and run scoped verification. They must not commit, push, merge, publish, deploy, or mutate external production state unless separately authorized.
 
-Effort rules:
-- Code implementation → **xhigh**. The Agent tool inherits the session's effort by default, which may not be xhigh — so either have the user set `/effort` accordingly, or for big fan-outs use the Workflow tool's `agent(prompt, {model: 'opus', effort: 'xhigh'})`, which sets effort per agent directly.
-- Browser-driving / computer-use tasks → **high, not xhigh** (over-thinking navigation wastes time; the orchestrator's job is precise step-by-step instructions so the agent doesn't wander to the wrong pages/tabs).
+If no isolated-worker capability or compatible external agent CLI is available, stop and explain that the delegated workflow cannot preserve its role boundary. Do not quietly turn the orchestrator into the implementer.
 
-Orchestrator token discipline: do NOT read whole diffs or re-read the codebase after each agent. Rely on agent reports + targeted spot-checks. Your context is for supervision, not implementation detail.
+## Workflow
 
-## Step 3 — Verify (the orchestrator's real job)
+### 1. Plan
 
-After each phase completes:
-1. Run the project's typecheck / lint / tests yourself (cheap shell commands, not agents).
-2. Walk the plan checklist: for each item, spot-check the actual code (targeted Reads, not full files) to confirm it exists and matches the plan. "Agent said done" is not done.
-3. Anything broken, missing, or off-plan → spawn a fresh Opus fixer agent with the precise finding (file, line, expected vs actual). Never fix it yourself.
-4. Re-verify after fixes.
+Create a written plan in the repository unless the user supplied one. Include:
 
-**Do not stop until every part of the plan is implemented and verified.** Don't end the turn with "phase 1 done, shall I continue?" — continue. Only stop for a genuine blocker or a decision that belongs to the user.
+- numbered phases and bounded workstreams;
+- exact files or narrow globs owned by each worker;
+- shared contracts written in full;
+- observable acceptance criteria and required verification;
+- dependency order and safe parallel groups;
+- files no worker may touch.
 
-## Step 4 — Report and hand off
+If two workstreams need the same file, sequence them. For large scopes, obtain the user's approval when the plan would materially determine product direction or external state.
 
-Per phase: one short report — what shipped, verification results (actual command output, not "should work"), what still needs env/provider/device setup, and what phase is next. Then offer to commit (see `ship`). For a review gate on the finished code, see the companion `fable-opus-codex` skill.
+### 2. Dispatch implementation workers
+
+Launch independent workstreams concurrently through the host's managed worker capability. Run dependent work sequentially. Do not require a product-specific tool name such as `Agent`, `Task`, `Workflow`, or `spawn_agent`.
+
+Every worker request must include:
+
+1. repository root and current branch;
+2. plan path and assigned sections;
+3. exclusive file ownership and known parallel ownership;
+4. current checkout state and existing user changes to preserve;
+5. exact objective, contracts, and acceptance criteria;
+6. scoped typecheck, test, build, or runtime verification;
+7. prohibition on commits, pushes, deployments, secrets exposure, and destructive Git;
+8. required report: status, files changed, verification output, and remaining blockers.
+
+Implementation workers default to Opus 4.8 xhigh. A user may instead select Cursor Agent, Codex, Claude, Grok, or another coding worker. Apply the same prompt and ownership contract regardless of provider.
+
+### 3. Verify
+
+After each wave, the orchestrator must:
+
+1. inspect repository status and the real diff;
+2. verify file-ownership compliance;
+3. run the project's actual checks;
+4. walk every plan item and inspect targeted implementation evidence;
+5. exercise browser, device, database, or runtime behavior when acceptance depends on it;
+6. reject unsupported completion claims.
+
+Green typecheck alone is not completion.
+
+### 4. Fix through fresh workers
+
+For each confirmed defect or missing item, dispatch a fresh worker using the selected implementer with:
+
+- observed evidence;
+- exact file or route;
+- expected behavior;
+- minimal allowed files;
+- focused reproduction or verification.
+
+Never make the orchestrator fix worker code directly. Continue until every applicable acceptance criterion passes or a genuine user/external blocker remains.
+
+### 5. Report
+
+Report the selected host, orchestrator model, worker tool/model, workstreams completed, files changed, exact verification results, rejected or corrected worker claims, and remaining environment/provider/device setup. Shipping remains a separate explicit step through the `ship` skill.
+
+## Rules
+
+- User-selected agents and models override all defaults.
+- Defaults are Fable 5 high for orchestration and Opus 4.8 xhigh for implementation.
+- No silent provider or model substitution.
+- Preserve disjoint ownership for parallel work.
+- Keep the orchestrator out of implementation edits.
+- Do not require one invocation prefix, subagent API, or coding harness.

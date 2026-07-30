@@ -1,6 +1,6 @@
 ---
 name: i18n-sweep
-description: Sweep the codebase for internationalization gaps - hardcoded user-facing strings, missing translation keys, and locales that drifted out of sync - then fill every gap with proper translations and verify. Use when the user says parts of the UI are untranslated, shows screenshots of mixed-language UI, asks to add a language, or invokes /i18n-sweep (optionally scoped to a directory or page).
+description: Sweeps a codebase for internationalization gaps, including hardcoded user-facing strings, missing translation keys, and locales that drifted out of sync, then fills the gaps with proper translations and verifies the result. Use when UI is untranslated, screenshots show mixed languages, the user asks to add a language, or an i18n audit is requested for a page, directory, or whole project.
 ---
 
 # i18n sweep
@@ -13,7 +13,7 @@ Detect how this project translates: typed message catalogs, i18next/react-intl, 
 - The locale list (e.g. `en`, `uz`, `ru`, `ko`) and the catalog file per locale.
 - The lookup mechanism (`t('key')`, typed dict access, component wrappers).
 - The reference locale (usually the most complete one — verify, don't assume it's `en`).
-- Any documented exceptions in AGENTS.md / CLAUDE.md — some content is intentionally untranslated (e.g. practice text in a typing app, code snippets, brand names). Respect those.
+- Any documented exceptions in `AGENTS.md`, `CLAUDE.md`, client-specific project instructions, or decision docs—some content is intentionally untranslated (for example, practice text, code snippets, or brand names). Respect those.
 
 ## Step 2 — Find the gaps (two different hunts)
 

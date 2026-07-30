@@ -1,55 +1,104 @@
 ---
 name: fable-opus-codex
-description: The full fable-opus pipeline (Fable 5 plans and orchestrates, Opus 4.8 subagents implement, Fable verifies) plus a final Codex CLI review gate of the implemented changes - Codex findings are fixed by Opus fixer agents and re-reviewed until Codex approves. Use when the user invokes /fable-opus-codex or asks for the fable/opus orchestration with a codex check at the end.
+description: Runs a delegated implementation pipeline followed by an independent iterative code-review gate. Defaults to Fable 5 orchestration, Opus 4.8 implementation, and OpenAI Codex CLI review, but honors any host, implementer, reviewer tool, or model explicitly selected by the user. Use for large multi-agent implementations that require disjoint ownership, orchestrator verification, and a second-agent approval verdict before shipping.
 ---
 
-# Fable orchestrates, Opus implements, Codex signs off
+# Delegate implementation, then require independent review
 
-Extension of the `fable-opus` skill: the identical plan → implement → verify pipeline, plus a mandatory Codex CLI review gate on the finished work before it can be called done. This gives a second, independent model (Codex/GPT) a final adversarial pass over the actual diff.
+Compose the `fable-opus` implementation protocol with the `codex-review` iterative reviewer protocol. The skill name records the default Fable → Opus → Codex pairing; each role is independently replaceable.
 
-## Steps 1–3: run the fable-opus pipeline
+## Role selection
 
-Follow the `fable-opus` skill exactly (plan file → Opus implementers with disjoint file ownership → Fable verifies against the plan, spawning Opus fixers until every plan item is implemented and typecheck/lint/tests pass). Do NOT start the Codex gate while your own verification still has open findings — Codex reviews finished work, not work in progress.
+Resolve all roles before work:
 
-## Step 4: Codex review gate (of the CODE, not the plan)
+1. Apply explicit user selections for host, orchestrator, implementer, reviewer, and models.
+2. Fill unspecified roles from compatible project or session configuration.
+3. Use defaults only for remaining roles:
+   - orchestrator: Fable 5 at high effort;
+   - implementer/fixer: Opus 4.8 at xhigh for code and high for browser work;
+   - reviewer: Codex CLI with `gpt-5.6-sol`, high reasoning, regular service tier, and read-only access.
 
-This reuses the `codex-review` skill's mechanics (session-id capture, resume, `VERDICT: APPROVED/REVISE`, no fast tier, xhigh reasoning, max 5 rounds) but points them at the implemented diff instead of a plan.
+Settings propagate by role. For example, `implementer=cursor-agent reviewer=claude-opus` replaces both defaults while leaving the active host free to be Codex, Claude Code, Cursor, or another Agent Skills client.
 
-1. Session-scoped ids and files:
-```bash
-REVIEW_ID=$(uuidgen | tr '[:upper:]' '[:lower:]' | head -c 8)
-git diff --stat $(git merge-base HEAD main 2>/dev/null || git merge-base HEAD master) > /tmp/impl-${REVIEW_ID}.md 2>/dev/null || git diff --stat > /tmp/impl-${REVIEW_ID}.md
-```
-Append to `/tmp/impl-${REVIEW_ID}.md`: the plan file path, the list of changed files, and a short summary of what each workstream implemented. Keep it a map, not a dump — Codex runs read-only in the repo and reads the real files itself.
+Never silently replace an explicitly requested role. If only a default is unavailable, declare the compatible fallback before continuing.
 
-2. Round 1:
-```bash
-codex exec -m gpt-5.5 -s read-only -c model_reasoning_effort="xhigh" -o /tmp/codex-review-${REVIEW_ID}.md \
-"Review the IMPLEMENTED changes described in /tmp/impl-${REVIEW_ID}.md against the plan file referenced inside it. Read the actual changed files in this repo. Focus on:
-1. Plan compliance - is every plan item genuinely implemented, not stubbed?
-2. Correctness bugs in the new code (trace real inputs, don't trust names)
-3. Regressions - did the changes break adjacent behavior?
-4. Security issues introduced by the changes
-5. Leftover debris - test files, debug logs, dead code that should be deleted
-Be specific: file, line, failure scenario. End with exactly VERDICT: APPROVED or VERDICT: REVISE"
-```
-Capture `session id: <uuid>` from the output as `CODEX_SESSION_ID` (never `--last`, which can grab the wrong concurrent session).
+## Steps 1–3: implement and verify
 
-3. Verdict loop (max 5 rounds):
-   - **REVISE** → for each real finding, spawn an Opus 4.8 fixer agent (`model: "opus"`, precise file/line/expected-vs-actual in the prompt) — the orchestrator still writes no code. First verify each finding is real; if Codex is wrong, or the behavior is an intentional, documented decision (check the project's AGENTS.md / CLAUDE.md "Key decisions" — some tradeoffs are deliberate), rebut it in the re-submission instead of "fixing" it.
-   - Re-run your own typecheck/tests after fixes, then resume:
-     ```bash
-     codex exec resume ${CODEX_SESSION_ID} -c model_reasoning_effort="xhigh" \
-     "Fixed: <list>. Rebutted: <list with reasons>. Re-review the changed files. End with VERDICT: APPROVED or VERDICT: REVISE" 2>&1 | tail -80
-     ```
-   - **APPROVED** → done. Max rounds without approval → report the unresolved findings and let the user decide.
+Load the companion `fable-opus` skill when it is installed. Otherwise use this self-contained implementation protocol:
 
-4. Cleanup: `rm -f /tmp/impl-${REVIEW_ID}.md /tmp/codex-review-${REVIEW_ID}.md`
+1. create or adopt a written plan;
+2. delegate disjoint workstreams to the selected implementation workers;
+3. verify the real diff, project checks, runtime behavior, and every plan item;
+4. send confirmed defects to fresh workers using the same selected implementer.
 
-## Step 5: Final report
+Do not start independent review while orchestrator verification has open findings. The reviewer evaluates finished work, not work in progress.
 
-One report: plan status (all items verified), Codex verdict and number of rounds, what was fixed vs rebutted per round, real command output for typecheck/tests, and anything that still needs env/provider/device setup. Then offer to commit (see the `ship` skill) — this skill does not commit or push; shipping stays a separate explicit step.
+## Step 4: independent code-review gate
+
+Load the companion `codex-review` skill when it is installed. Otherwise apply the tool-selection, session handling, verdict, and five-round protocol described below, reviewing the implemented diff against the plan.
+
+### 1. Prepare the review packet
+
+Create a session-scoped review directory using the platform's safe temporary-directory mechanism. Write an implementation map containing:
+
+- repository root and branch;
+- merge base or exact commit range;
+- plan path;
+- changed files;
+- summary of each workstream;
+- verification already completed;
+- documented constraints and intentional decisions.
+
+Keep the map concise. The selected reviewer must inspect the actual changed files through read-only repository access.
+
+### 2. Review
+
+Ask the selected reviewer to assess:
+
+1. plan compliance and missing or stubbed work;
+2. correctness with real input and state tracing;
+3. regressions in adjacent behavior;
+4. security, privacy, data-loss, and permission risks;
+5. leftover debug code, temporary artifacts, or dead paths;
+6. gaps in tests and runtime verification.
+
+Require file/line/scenario evidence and one exact final line: `VERDICT: APPROVED` or `VERDICT: REVISE`.
+
+The default reviewer is the `codex-review` Codex CLI configuration. When the user selects another reviewer, use that agent's native isolated review capability or authenticated non-interactive CLI while preserving read-only access and the same verdict protocol.
+
+### 3. Verify and resolve findings
+
+For every finding:
+
+- verify it against the current checkout;
+- classify it as confirmed, stale, wrong, intentional, or blocked;
+- send confirmed fixes to a fresh worker using the selected implementer;
+- rebut stale, wrong, or intentional findings with evidence;
+- rerun relevant checks after fixes.
+
+The orchestrator must not implement reviewer fixes directly.
+
+### 4. Re-review
+
+Resume the exact reviewer session when supported. Otherwise start a fresh read-only round whose packet includes the previous review, verified fixes, rebuttals, and current diff. Never use a global “last session” selector during concurrent work.
+
+Stop after approval or five rounds. Five rounds without approval is not success; report unresolved findings for the user to decide.
+
+## Step 5: report
+
+Report:
+
+- selected host and all role/model choices;
+- plan completion evidence;
+- review verdict and round count;
+- findings fixed, rebutted, or blocked;
+- exact test/build/runtime outcomes;
+- remaining environment/provider/device setup.
+
+Do not commit or push. Shipping remains a separate explicit action through the `ship` skill.
 
 ## Requirements
 
-- Codex CLI installed and authenticated (`npm install -g @openai/codex`). See the `codex-review` skill for the base configuration this gate reuses.
+- An isolated implementation-worker capability or compatible external coding-agent CLI.
+- A read-only reviewer capability or compatible external reviewer CLI.
+- Defaults require access to Fable 5, Opus 4.8, and an installed/authenticated Codex CLI; user-selected alternatives replace only the corresponding requirement.

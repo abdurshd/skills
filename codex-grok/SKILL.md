@@ -1,6 +1,6 @@
 ---
 name: codex-grok
-description: Run a two-model implementation pipeline where OpenAI GPT-5.6 Sol at xhigh is the planner, orchestrator, and verifier while Grok 4.5 at high performs all hands-on implementation through Grok Build CLI workers. Use when the user invokes $codex-grok, asks Codex to orchestrate Grok, wants Sol to supervise Grok implementation, or wants a large plan executed by Grok workers with disjoint file ownership and Codex verification.
+description: Runs the hardened Codex/Grok two-model implementation preset in which OpenAI GPT-5.6 Sol at xhigh plans, orchestrates, and verifies while Grok 4.5 at high performs implementation through bounded Grok Build CLI workers. Use when the user requests codex-grok, asks Codex to supervise Grok, or needs this exact provider-specific safety wrapper. For arbitrary orchestrator or worker tools, use the portable fable-opus protocol instead.
 ---
 
 # Codex orchestrates, Grok implements
