@@ -1,6 +1,6 @@
 ---
 name: unslopify
-description: Audits and improves websites or web interfaces that feel AI-generated, generic, template-like, overdecorated, visually homogeneous, or insufficiently crafted. Use for requests to remove AI slop, de-AI a design, make a landing page feel authored, replace generic SaaS aesthetics, remove default icon tiles or AI metaphors, reduce card soup or decorative effects, strengthen product-specific art direction, improve UI hierarchy and copy, or perform an anti-slop review before shipping. Supports landing pages, marketing sites, portfolios, docs, dashboards, apps, and individual components; can produce a read-only critique or implement and verify fixes. Uses the open Agent Skills format without requiring a specific agent or harness.
+description: Audits and improves websites or web interfaces that feel AI-generated, generic, template-like, overdecorated, visually homogeneous, or insufficiently crafted. Use for requests to remove AI slop, de-AI a design, make a landing page feel authored, replace generic SaaS aesthetics, remove default icon tiles, standalone card icons, or AI metaphors, reduce card soup or decorative effects, strengthen product-specific art direction, improve UI hierarchy and copy, or perform an anti-slop review before shipping. Supports landing pages, marketing sites, portfolios, docs, dashboards, apps, and individual components; can produce a read-only critique or implement and verify fixes. Uses the open Agent Skills format without requiring a specific agent or harness.
 ---
 
 # Unslopify
@@ -15,7 +15,7 @@ Turn a generic interface into a specific, coherent, production-ready one. Treat 
 - Do not swap one saturated default for its fashionable opposite. “No purple gradient” does not imply cream editorial; “no cream” does not imply neon dark mode.
 - Fix causes, not signatures. Removing a glow while leaving an interchangeable hero and empty claims is still slop.
 - Remove decorative hero or section eyebrow badges completely, including their text and wrapper. Do not merely remove the pill styling or turn the copy into a floating overline. Preserve only labels with real navigation, state, filtering, taxonomy, or required-context value, and place those in the appropriate semantic pattern.
-- Remove decorative Sparkles, Brain, Bot, and similar stock line icons used as shorthand for “AI,” “smart,” “automation,” or “innovation.” Remove repeated icon-above-title treatments from explanatory cards. Do not replace Lucide with another generic icon library; preserve icons only when they identify a real action, object, state, or navigation target.
+- Remove decorative Sparkles, Brain, Bot, emoji, and similar stock symbols used as shorthand for “AI,” “smart,” “automation,” “innovation,” or a broad card category. Do not let a lone icon consume its own row above a card title. Remove it by default; retain it only when it identifies a real action, object, state, or destination, and then integrate it compactly into the title row or another semantically appropriate control. Do not replace Lucide with another generic icon library.
 - Inspect a real browser path at representative desktop and mobile sizes whenever the target is viewable and browser control exists. Disclose a source-only review as degraded.
 - Keep audit-only requests read-only. Implement only when the user asks to fix, redesign, improve, or remove the problems.
 
@@ -84,7 +84,7 @@ Inspect the rendered desktop and mobile experience with the best available brows
 - **Identity:** Do type, color, imagery, shape, and motion form one recognizable world?
 - **Content:** Are real assets and specific language doing the work, or is decorative chrome filling missing content?
 - **Eyebrow check:** Is a short badge, pill, chip, kicker, overline, or uppercase label sitting immediately above the hero H1 or repeated section headings? If it is promotional decoration rather than essential context, mark the whole element for deletion.
-- **Icon check:** Are Sparkles, WandSparkles, Brain, BrainCircuit, Bot, or similar stock symbols standing in for an AI concept? Do explanatory cards repeat the same icon-tile-title-copy grammar? Mark decorative instances for removal, regardless of icon library.
+- **Icon check:** Are Sparkles, WandSparkles, Brain, BrainCircuit, Bot, emoji, or similar stock symbols standing in for an AI concept or broad category? Does each card reserve an otherwise empty first row for one icon before the title? Do cards repeat the same icon-title-copy grammar? Mark decorative instances and their reserved space for removal, regardless of icon source.
 - **Usability:** Do controls, states, responsive behavior, focus, contrast, and errors work?
 - **Finish:** Are spacing, alignment, wrapping, loading, and edge cases consistent?
 
@@ -120,7 +120,7 @@ Verify every finding in context. Classify it as confirmed, false positive, inten
 
 Also search likely component and class names such as `eyebrow`, `kicker`, `overline`, `badge`, `pill`, `chip`, and `tag`. Confirm candidates against the rendered hierarchy: names alone are not evidence, but a decorative short label directly preceding a hero or section heading is.
 
-Search imports from `lucide-react`, `lucide-vue-next`, `lucide-svelte`, `lucide-preact`, `lucide-angular`, `lucide-react-native`, `lucide`, and comparable icon packages. Inspect uses of `Sparkles`, `WandSparkles`, `Brain`, `BrainCircuit`, `Bot`, `BotMessageSquare`, and repeated icon props in card data. An import or icon name alone is not a finding; confirm that the rendered icon is decorative, a generic metaphor, or repeated explanatory-card scaffolding.
+Search imports from `lucide-react`, `lucide-vue-next`, `lucide-svelte`, `lucide-preact`, `lucide-angular`, `lucide-react-native`, `lucide`, and comparable icon packages. Inspect uses of `Sparkles`, `WandSparkles`, `Brain`, `BrainCircuit`, `Bot`, `BotMessageSquare`, emoji literals, and repeated `icon` fields or props in card data. An import, glyph, or icon name alone is not a finding; confirm that the rendered symbol is decorative, a generic metaphor, or repeated explanatory-card scaffolding—especially a standalone first child above the card heading.
 
 ### 5. Build the root-cause map
 
@@ -180,6 +180,7 @@ Prefer subtraction before decoration:
 - Replace a generic hero with the product mechanism, artifact, or primary task.
 - Delete decorative Lucide-style Sparkles, Brain, Bot, and generic AI/automation metaphors. Remove their icon containers and spacing; do not swap in another stock glyph or emoji.
 - Replace icon-tile feature grids with real evidence, workflow, comparison, demonstration, or a typographic list. If cards remain, let their content and relationships create hierarchy instead of assigning every card an icon.
+- Remove any decorative icon-only row above a card title and reclaim its height, gap, wrapper, and padding. If a retained icon has concrete semantic value, use a compact card-header layout: keep the title as the lead, place the icon beside it or aligned to the trailing edge in the same row, avoid a large tile, and preserve sensible reading order and wrapping on narrow screens.
 - Delete decorative hero and repeated section eyebrows, including the badge wrapper, icon, and copy. Do not preserve the same slogan as unboxed microcopy. Fold genuinely essential context into the heading or body; render real breadcrumbs, statuses, filters, or taxonomy through their established semantic component.
 - Replace glow, glass, gradient, and fake depth with a deliberate surface and one elevation model.
 - Replace vague buzzwords with a specific verb, object, outcome, and constraint.
@@ -197,7 +198,7 @@ Run the project’s build, typecheck, lint, and relevant tests through the avail
 4. Check focus visibility, contrast, zoom/reflow, reduced motion, overflow, and image loading.
 5. Check that the contract survived and preserved behavior still works.
 6. Confirm that removed eyebrow elements left no empty wrapper, orphan icon, stray margin, or awkward vertical gap above the heading.
-7. Confirm that removed decorative icons left no empty tile, misaligned card padding, stale icon prop, unused import, or unused dependency. Retest retained functional icons for accessible names and recognizable meaning.
+7. Confirm that removed decorative icons left no empty first row, tile, gap, misaligned card padding, stale icon prop, unused import, or unused dependency. Confirm that retained semantic icons share a compact header or appropriate control instead of pushing the title downward; retest them for accessible names, recognizable meaning, and narrow-screen wrapping.
 8. Fix material findings in one batch and confirm once more.
 9. Run one final detector pass when the detector is available. Do not keep polishing in an open-ended loop.
 
@@ -230,7 +231,8 @@ The work is complete only when all applicable gates have evidence:
 - **Truthful:** claims, data, imagery, and states are real or clearly marked.
 - **Directed:** one thesis, one reading/task path, and one coherent visual world survive.
 - **No decorative pre-headline chrome:** promotional eyebrow badges, pills, chips, kickers, icons, and their copy are absent above hero and repeated section headings; any retained label has a concrete semantic job.
-- **No stock AI iconography:** generic Sparkles, Brain, Bot, and repeated icon-tile card decorations are absent; retained icons communicate concrete actions, objects, states, or destinations.
+- **No stock AI iconography:** generic Sparkles, Brain, Bot, emoji, and repeated icon-tile card decorations are absent; retained icons communicate concrete actions, objects, states, or destinations.
+- **No icon-only card shelf:** no decorative icon occupies a separate row above a card title; any justified icon is compactly integrated without outranking or displacing the heading.
 - **Useful:** the offer or task is obvious and the primary path works.
 - **Systematic:** repeated roles use shared tokens and components without drift.
 - **Inclusive:** responsive, keyboard, focus, contrast, motion, and content extremes work.

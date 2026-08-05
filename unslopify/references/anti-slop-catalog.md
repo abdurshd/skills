@@ -41,13 +41,15 @@ Treat these as diagnostic signals. A single pattern can be intentional; a cluste
 
 ### Icon-decorated explanation cards
 
-**Signal:** every feature, benefit, process, or “how it works” card starts with a Lucide-style icon, often inside a rounded square or circle, followed by a heading and similar-length paragraph.
+**Signal:** every feature, benefit, process, category, or “how it works” card starts with a Lucide-style icon or emoji, often inside a rounded shape or alone on an otherwise empty first row, followed by a heading and similar-length paragraph.
 
-**Why it reads as slop:** the icons manufacture superficial variety while the cards remain structurally identical. The treatment gives decorative glyphs more prominence than the explanation.
+**Why it reads as slop:** the icons manufacture superficial variety while the cards remain structurally identical. Giving one decorative symbol a full row delays the title, wastes vertical space, and grants the glyph more prominence than the explanation.
 
-**Default repair:** first decide whether the content should remain cards. Prefer a workflow, comparison, annotated artifact, ordered steps, typographic list, or fewer asymmetric groups. If cards are genuinely independent units, remove decorative icons and create hierarchy through content, typography, spacing, and evidence.
+**Default repair:** first decide whether the content should remain cards. Prefer a workflow, comparison, annotated artifact, ordered steps, typographic list, or fewer asymmetric groups. If cards are genuinely independent units, remove decorative icons, reclaim the reserved row and gap, and create hierarchy through content, typography, spacing, and evidence.
 
-**Cleanup:** remove empty icon wrappers, icon props, dead mapping fields, and unused imports. Remove the package dependency only when the project no longer uses it for legitimate controls or states.
+**Semantic exception:** retain an icon only when it identifies a concrete action, object, state, or destination and materially improves recognition. Put it in a compact header with the title—adjacent to the title or aligned to the trailing edge—not on its own row. Keep the title visually primary, avoid an oversized tile, preserve logical source order, and test wrapping on narrow cards. A generic category emoji such as a robot, globe, snake, or sparkle is normally decoration, not an exception.
+
+**Cleanup:** remove empty first-row wrappers, reserved min-height, icon props, dead mapping fields, unused imports, and leftover top gaps. Remove the package dependency only when the project no longer uses it for legitimate controls or states.
 
 ### Nested cards and container soup
 
