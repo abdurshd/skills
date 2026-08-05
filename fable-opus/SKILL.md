@@ -1,6 +1,6 @@
 ---
 name: fable-opus
-description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5 as orchestrator and Opus 4.8 as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
+description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5 as orchestrator and Claude Opus 5 through the latest Opus model selector as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
 ---
 
 # Orchestrator delegates, workers implement
@@ -13,7 +13,9 @@ Resolve roles before planning:
 
 1. Use any orchestrator, worker tool, CLI, or model explicitly named by the user.
 2. Otherwise use compatible project or session configuration.
-3. Otherwise default to Fable 5 at high effort for orchestration and Opus 4.8 at xhigh effort for code implementation.
+3. Otherwise default to Fable 5 at high effort for orchestration and the provider or harness's `opus` latest-model alias at xhigh effort for code implementation.
+
+Resolve the latest Opus model at runtime. In Claude Code, select `--model opus`; at this skill update the alias resolves to Claude Opus 5 (`claude-opus-5`). In another provider or harness, use its documented latest-Opus selector or newest generally available Opus release. Record the resolved model, and never describe a fallback or stale pin as the latest Opus.
 
 For browser-driving or computer-use work, default the worker to high effort rather than xhigh. Map effort names to the closest supported setting without increasing cost or depth beyond the user's request.
 
@@ -59,7 +61,7 @@ Every worker request must include:
 7. prohibition on commits, pushes, deployments, secrets exposure, and destructive Git;
 8. required report: status, files changed, verification output, and remaining blockers.
 
-Implementation workers default to Opus 4.8 xhigh. A user may instead select Cursor Agent, Codex, Claude, Grok, or another coding worker. Apply the same prompt and ownership contract regardless of provider.
+Implementation workers default to the latest Opus model at xhigh through the runtime's `opus` alias or equivalent selector. A user may instead select Cursor Agent, Codex, Claude, Grok, or another coding worker. Apply the same prompt and ownership contract regardless of provider.
 
 ### 3. Verify
 
@@ -93,7 +95,7 @@ Report the selected host, orchestrator model, worker tool/model, workstreams com
 ## Rules
 
 - User-selected agents and models override all defaults.
-- Defaults are Fable 5 high for orchestration and Opus 4.8 xhigh for implementation.
+- Defaults are Fable 5 high for orchestration and the runtime-resolved latest Opus model at xhigh for implementation.
 - No silent provider or model substitution.
 - Preserve disjoint ownership for parallel work.
 - Keep the orchestrator out of implementation edits.

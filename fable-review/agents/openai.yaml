@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fable Review"
+  short_description: "Review plans iteratively with Fable"
+  default_prompt: "Use $fable-review to review this implementation plan until it is approved or the bounded review loop ends."

@@ -1,6 +1,6 @@
 ---
 name: fable-opus-codex
-description: Runs a delegated implementation pipeline followed by an independent iterative code-review gate. Defaults to Fable 5 orchestration, Opus 4.8 implementation, and OpenAI Codex CLI review, but honors any host, implementer, reviewer tool, or model explicitly selected by the user. Use for large multi-agent implementations that require disjoint ownership, orchestrator verification, and a second-agent approval verdict before shipping.
+description: Runs a delegated implementation pipeline followed by an independent iterative code-review gate. Defaults to Fable 5 orchestration, Claude Opus 5 through the latest Opus model selector for implementation, and OpenAI Codex CLI review, but honors any host, implementer, reviewer tool, or model explicitly selected by the user. Use for large multi-agent implementations that require disjoint ownership, orchestrator verification, and a second-agent approval verdict before shipping.
 ---
 
 # Delegate implementation, then require independent review
@@ -15,7 +15,7 @@ Resolve all roles before work:
 2. Fill unspecified roles from compatible project or session configuration.
 3. Use defaults only for remaining roles:
    - orchestrator: Fable 5 at high effort;
-   - implementer/fixer: Opus 4.8 at xhigh for code and high for browser work;
+   - implementer/fixer: the provider or harness's `opus` latest-model alias, currently Claude Opus 5 (`claude-opus-5`), at xhigh for code and high for browser work;
    - reviewer: Codex CLI with `gpt-5.6-sol`, high reasoning, regular service tier, and read-only access.
 
 Settings propagate by role. For example, `implementer=cursor-agent reviewer=claude-opus` replaces both defaults while leaving the active host free to be Codex, Claude Code, Cursor, or another Agent Skills client.
@@ -101,4 +101,4 @@ Do not commit or push. Shipping remains a separate explicit action through the `
 
 - An isolated implementation-worker capability or compatible external coding-agent CLI.
 - A read-only reviewer capability or compatible external reviewer CLI.
-- Defaults require access to Fable 5, Opus 4.8, and an installed/authenticated Codex CLI; user-selected alternatives replace only the corresponding requirement.
+- Defaults require access to Fable 5, the runtime-resolved latest Opus model, and an installed/authenticated Codex CLI; user-selected alternatives replace only the corresponding requirement.
