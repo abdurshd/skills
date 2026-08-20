@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Use"
+  short_description: "Run Claude Code from Codex"
+  default_prompt: "Use $claude-use to hand an approved implementation plan to Claude Code in detached mode."

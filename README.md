@@ -25,6 +25,8 @@ Host, role, provider, and model are separate choices. For example, Cursor can ho
 | **fable-opus-codex** | Run delegated implementation, then require an independent iterative code-review verdict before shipping. | Defaults to Fable 5 → Claude Opus 5 → Codex. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |
 | **codex-review** | Iteratively review and improve an implementation plan until approved or five rounds are reached. | Defaults to Codex CLI with GPT-5.6 Sol, high reasoning, and read-only access. Any read-only coding reviewer can replace it. |
 | **fable-review** | Iteratively review and improve an implementation plan until approved or five rounds are reached. | Defaults to Claude Code with its latest Fable alias, high effort, and read-only access. Any read-only coding reviewer can replace it. |
+| **claude-review** | Run detached plan or uncommitted-code review with specialist review lenses and a findings-first verdict. | Intentionally Claude Code-specific; defaults to `claude`, Opus, high effort, and read-only Plan permission mode. |
+| **claude-use** | Hand an approved implementation brief to a detached Claude Code worker with temporary specialist agents, inspectable logs, and bounded verification. | Intentionally Claude Code-specific; defaults to `claude`, Opus, high effort, and explicit implementation permissions. |
 | **codex-grok** | Run the hardened Codex/Grok implementation preset with a sandboxed orchestrator and bounded Grok workers. | Intentionally provider-specific because its safety wrapper validates exact CLI flags. Use `fable-opus` for arbitrary worker tools. |
 | **fix-findings** | Verify every external-review claim against current code, fix confirmed defects, and rebut stale or intentional findings. | Fully harness-neutral. |
 | **i18n-sweep** | Find catalog drift and hardcoded user-facing strings, fill every locale, and verify rendered behavior. | Fully harness-neutral. |
@@ -81,7 +83,8 @@ The [Agent Skills client guidance](https://agentskills.io/client-implementation/
 
 ```bash
 mkdir -p ~/.agents/skills
-cp -R ship fable-opus fable-opus-codex codex-review fable-review codex-grok \
+cp -R ship fable-opus fable-opus-codex codex-review fable-review \
+  claude-review claude-use codex-grok \
   fix-findings i18n-sweep unslopify \
   genvid-onboard genvid-promo genvid-tutor \
   ~/.agents/skills/
@@ -116,6 +119,8 @@ Claude Code documents user and project discovery under [`.claude/skills/`](https
 - **Default `fable-opus`:** access to Fable 5 and the provider or harness's latest `opus` model alias. The alias currently resolves to Claude Opus 5 (`claude-opus-5`); user-selected alternatives replace the corresponding model requirement.
 - **Default `codex-review`:** an installed and authenticated [OpenAI Codex CLI](https://github.com/openai/codex).
 - **Default `fable-review`:** an installed and authenticated [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/cli-usage) with access to its latest `fable` model alias.
+- **`claude-review`:** an installed and authenticated Claude Code CLI with Opus access; the launcher enforces read-only Plan permission mode and does not substitute another harness.
+- **`claude-use`:** an installed and authenticated Claude Code CLI with Opus access; the launcher uses explicit bypass permissions for a previously approved implementation brief.
 - **Alternative review:** a selected reviewer replaces only the corresponding default tool and model requirement.
 - **`codex-grok`:** Codex CLI, Grok Build CLI, GPT-5.6 Sol, and Grok 4.5 because its wrapper enforces provider-specific sandbox and permission flags.
 - **Video skills:** Node.js, Remotion/FFmpeg dependencies, and a user-selected TTS provider plus secret environment variable.
