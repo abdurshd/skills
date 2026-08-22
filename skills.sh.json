@@ -1,0 +1,44 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Orchestration & review",
+      "description": "Plan, delegate, implement, and independently review complex coding work.",
+      "skills": [
+        "fable-opus",
+        "fable-opus-codex",
+        "codex-review",
+        "fable-review",
+        "claude-review",
+        "claude-use",
+        "codex-grok"
+      ]
+    },
+    {
+      "title": "Quality & delivery",
+      "description": "Verify findings, internationalize interfaces, and safely ship completed work.",
+      "skills": [
+        "fix-findings",
+        "i18n-sweep",
+        "ship"
+      ]
+    },
+    {
+      "title": "Design",
+      "description": "Replace generic generated aesthetics with specific, product-grounded design.",
+      "skills": [
+        "unslopify"
+      ]
+    },
+    {
+      "title": "Video production",
+      "description": "Produce onboarding, promotional, and educational videos from verified material.",
+      "skills": [
+        "genvid-onboard",
+        "genvid-promo",
+        "genvid-tutor"
+      ]
+    }
+  ]
+}

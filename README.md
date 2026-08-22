@@ -1,5 +1,7 @@
 # Portable agent skills for coding workflows
 
+[![skills.sh](https://skills.sh/b/abdurshd/skills)](https://skills.sh/abdurshd/skills)
+
 Reusable [Agent Skills](https://agentskills.io/) for implementation, review, design, video production, internationalization, and shipping. Each skill is a self-contained folder with a standard `SKILL.md` plus optional scripts and references.
 
 The workflow belongs to the skill, not to the application hosting it. The same folder can run in Claude Code, Codex, Cursor, or another compatible coding agent when that client exposes the capabilities the workflow needs.
@@ -77,9 +79,42 @@ The current default pairing is Fable 5 → Claude Opus 5 → Codex. The `opus` a
 
 ## Install
 
-The [Agent Skills client guidance](https://agentskills.io/client-implementation/adding-skills-support) recommends `.agents/skills/` as the cross-client location. Copy the complete folder, not only `SKILL.md`, so scripts and references remain available.
+All skills are published from this public GitHub repository and listed on the [skills.sh repository page](https://skills.sh/abdurshd/skills). The CLI downloads the complete selected folder, including its scripts and references.
 
-### Shared personal installation
+### Skills CLI (recommended)
+
+List every available skill without installing anything:
+
+```bash
+npx skills add abdurshd/skills --list
+```
+
+Install one skill globally for a selected agent:
+
+```bash
+npx skills add abdurshd/skills@unslopify --global --agent codex --yes
+```
+
+Install the complete collection globally for Codex and Claude Code:
+
+```bash
+npx skills add abdurshd/skills --skill '*' --global \
+  --agent codex --agent claude-code --yes
+```
+
+Future updates use the source recorded by the CLI:
+
+```bash
+npx skills update --global
+```
+
+skills.sh automatically lists public GitHub skills after the Skills CLI records an installation from the repository. There is no separate npm package or store upload step.
+
+### Manual installation
+
+The [Agent Skills client guidance](https://agentskills.io/client-implementation/adding-skills-support) recommends `.agents/skills/` as the cross-client location. If the Skills CLI is unavailable, copy the complete folder—not only `SKILL.md`—so scripts and references remain available.
+
+#### Shared personal installation
 
 ```bash
 mkdir -p ~/.agents/skills
@@ -90,7 +125,7 @@ cp -R ship fable-opus fable-opus-codex codex-review fable-review \
   ~/.agents/skills/
 ```
 
-### Client-specific personal installation
+#### Client-specific personal installation
 
 Use a client-specific directory when that client does not scan the shared path or when you want an isolated copy:
 
