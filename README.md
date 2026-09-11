@@ -33,6 +33,7 @@ Host, role, provider, and model are separate choices. For example, Cursor can ho
 | **fix-findings** | Verify every external-review claim against current code, fix confirmed defects, and rebut stale or intentional findings. | Fully harness-neutral. |
 | **i18n-sweep** | Find catalog drift and hardcoded user-facing strings, fill every locale, and verify rendered behavior. | Fully harness-neutral. |
 | **unslopify** | Remove generic AI-design tells through product-specific direction, rendered evidence, and bounded visual verification. | Harness-neutral; Impeccable detection is optional. |
+| **sidebar-x** | Design and implement one console sidebar that keeps its shape on every page: clear menus and submenus, a pinned zone for organization, platform and account, admin-controlled visibility, icon rail and mobile drawer, adapted to single-user, single-tenant or multi-tenant products. | Fully harness-neutral and framework-neutral; maps onto the host project's own design tokens. |
 | **genvid-onboard** | Produce truthful narrated onboarding and product-demo videos from verified UI and behavior. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
 | **genvid-promo** | Produce polished product-promotion videos from real UI, components, tokens, and verified claims. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
 | **genvid-tutor** | Produce complete narrated teaching videos with research, pedagogy, animation, captions, and rendered MP4 output. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
@@ -120,7 +121,7 @@ The [Agent Skills client guidance](https://agentskills.io/client-implementation/
 mkdir -p ~/.agents/skills
 cp -R ship fable-opus fable-opus-codex codex-review fable-review \
   claude-review claude-use codex-grok \
-  fix-findings i18n-sweep unslopify \
+  fix-findings i18n-sweep unslopify sidebar-x \
   genvid-onboard genvid-promo genvid-tutor \
   ~/.agents/skills/
 ```

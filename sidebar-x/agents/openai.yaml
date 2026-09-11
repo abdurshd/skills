@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sidebar X"
+  short_description: "One console sidebar, one shape, on every page"
+  default_prompt: "Use $sidebar-x to design and implement this product's sidebar: one shape on every page, clear menus and submenus, a pinned zone for organization, platform and account, admin-controlled visibility, an icon rail and a mobile drawer."

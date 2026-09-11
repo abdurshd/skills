@@ -26,9 +26,10 @@
     },
     {
       "title": "Design",
-      "description": "Replace generic generated aesthetics with specific, product-grounded design.",
+      "description": "Replace generic generated aesthetics with specific, product-grounded design, and structure console navigation.",
       "skills": [
-        "unslopify"
+        "unslopify",
+        "sidebar-x"
       ]
     },
     {
