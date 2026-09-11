@@ -1,6 +1,6 @@
 ---
 name: fable-opus
-description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5 as orchestrator and Claude Opus 5 through the latest Opus model selector as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
+description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5.1 as orchestrator and Claude Opus 5 through the latest Opus model selector as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
 ---
 
 # Orchestrator delegates, workers implement
@@ -13,7 +13,7 @@ Resolve roles before planning:
 
 1. Use any orchestrator, worker tool, CLI, or model explicitly named by the user.
 2. Otherwise use compatible project or session configuration.
-3. Otherwise default to Fable 5 at high effort for orchestration and the provider or harness's `opus` latest-model alias at xhigh effort for code implementation.
+3. Otherwise default to Fable 5.1 at high effort for orchestration and the provider or harness's `opus` latest-model alias at xhigh effort for code implementation.
 
 Resolve the latest Opus model at runtime. In Claude Code, select `--model opus`; at this skill update the alias resolves to Claude Opus 5 (`claude-opus-5`). In another provider or harness, use its documented latest-Opus selector or newest generally available Opus release. Record the resolved model, and never describe a fallback or stale pin as the latest Opus.
 
@@ -95,7 +95,7 @@ Report the selected host, orchestrator model, worker tool/model, workstreams com
 ## Rules
 
 - User-selected agents and models override all defaults.
-- Defaults are Fable 5 high for orchestration and the runtime-resolved latest Opus model at xhigh for implementation.
+- Defaults are Fable 5.1 high for orchestration and the runtime-resolved latest Opus model at xhigh for implementation.
 - No silent provider or model substitution.
 - Preserve disjoint ownership for parallel work.
 - Keep the orchestrator out of implementation edits.

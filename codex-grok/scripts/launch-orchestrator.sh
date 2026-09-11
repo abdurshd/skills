@@ -25,12 +25,12 @@ command -v codex >/dev/null 2>&1 || { printf 'Codex CLI is not installed\n' >&2;
 
 mkdir -p "$(dirname "$result_file")"
 
-prompt="You are already the active codex-grok orchestrator running as GPT-5.6 Sol at xhigh. Do not relaunch Codex. Read and follow $skill_root/SKILL.md. Execute the objective in $objective_file inside $repo_root. Keep orchestration prompts and reports in a session-scoped directory inside $repo_root. Delegate every implementation edit to Grok workers as required by the skill. Continue until verified or genuinely blocked."
+prompt="You are already the active codex-grok orchestrator running as GPT-6 Astra at xhigh. Do not relaunch Codex. Read and follow $skill_root/SKILL.md. Execute the objective in $objective_file inside $repo_root. Keep orchestration prompts and reports in a session-scoped directory inside $repo_root. Delegate every implementation edit to Grok workers as required by the skill. Continue until verified or genuinely blocked."
 
 args=(
   codex exec
   --ephemeral
-  --model gpt-5.6-sol
+  --model gpt-6-astra
   --config 'model_reasoning_effort="xhigh"'
   --config 'sandbox_workspace_write.network_access=true'
   --sandbox workspace-write

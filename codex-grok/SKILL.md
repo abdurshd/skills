@@ -1,19 +1,19 @@
 ---
 name: codex-grok
-description: Runs the hardened Codex/Grok two-model implementation preset in which OpenAI GPT-5.6 Sol at xhigh plans, orchestrates, and verifies while Grok 4.5 at high performs implementation through bounded Grok Build CLI workers. Use when the user requests codex-grok, asks Codex to supervise Grok, or needs this exact provider-specific safety wrapper. For arbitrary orchestrator or worker tools, use the portable fable-opus protocol instead.
+description: Runs the hardened Codex/Grok two-model implementation preset in which OpenAI GPT-6 Astra at xhigh plans, orchestrates, and verifies while Grok 4.5 at high performs implementation through bounded Grok Build CLI workers. Use when the user requests codex-grok, asks Codex to supervise Grok, or needs this exact provider-specific safety wrapper. For arbitrary orchestrator or worker tools, use the portable fable-opus protocol instead.
 ---
 
 # Codex orchestrates, Grok implements
 
-Keep GPT-5.6 Sol's context focused on decomposition, judgment, and verification. Delegate every implementation edit to Grok 4.5 workers. Produce completed, verified work rather than a plan-only handoff.
+Keep GPT-6 Astra's context focused on decomposition, judgment, and verification. Delegate every implementation edit to Grok 4.5 workers. Produce completed, verified work rather than a plan-only handoff.
 
 ## Non-negotiable model contract
 
-- Orchestrator: `gpt-5.6-sol` with `model_reasoning_effort="xhigh"`.
+- Orchestrator: `gpt-6-astra` with `model_reasoning_effort="xhigh"`.
 - Workhorse: `grok-4.5` with `--reasoning-effort high`.
 - Never substitute another model or effort silently.
 - Run `scripts/preflight.sh` before planning. In Codex Desktop, if the only failure is sandbox DNS/HTTPS access to Grok, rerun the preflight through the host tool's narrow escalation flow. If live authentication or model access still fails outside that sandbox boundary, stop and ask the user to run `grok login --oauth`.
-- If the active session is not verifiably GPT-5.6 Sol xhigh, relaunch through `scripts/launch-orchestrator.sh <repo-root> <objective-file> <result-file>`. The child prompt marks itself as already active to prevent recursive relaunches.
+- If the active session is not verifiably GPT-6 Astra xhigh, relaunch through `scripts/launch-orchestrator.sh <repo-root> <objective-file> <result-file>`. The child prompt marks itself as already active to prevent recursive relaunches.
 - Keep the child Codex sandbox at `workspace-write`. The launcher may add only the authenticated Grok state directory as an extra writable root.
 
 ## Codex Desktop launcher boundary

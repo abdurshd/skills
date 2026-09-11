@@ -1,6 +1,6 @@
 ---
 name: codex-review
-description: Iteratively reviews and improves an implementation plan with an independent coding agent. Defaults to OpenAI Codex CLI using GPT-5.6 Sol with high reasoning and a read-only sandbox, but honors any reviewer tool, model, or harness explicitly selected by the user. Use for second-opinion plan reviews, adversarial risk checks, iterative approval gates, or requests to have Codex, Claude, Cursor, or another agent critique a plan before implementation.
+description: Iteratively reviews and improves an implementation plan with an independent coding agent. Defaults to OpenAI Codex CLI using GPT-6 Astra with high reasoning and a read-only sandbox, but honors any reviewer tool, model, or harness explicitly selected by the user. Use for second-opinion plan reviews, adversarial risk checks, iterative approval gates, or requests to have Codex, Claude, Cursor, or another agent critique a plan before implementation.
 ---
 
 # Iterative plan review
@@ -13,7 +13,7 @@ Resolve the reviewer once before round 1, in this order:
 
 1. Use the reviewer tool, CLI, agent, or model explicitly named by the user.
 2. Otherwise use a reviewer configured by the current project or session.
-3. Otherwise default to OpenAI Codex CLI with `gpt-5.6-sol`, `model_reasoning_effort="high"`, regular service tier, and read-only access.
+3. Otherwise default to OpenAI Codex CLI with `gpt-6-astra`, `model_reasoning_effort="high"`, regular service tier, and read-only access.
 
 Treat host and reviewer as separate choices. Claude Code, Codex, Cursor, or another Agent Skills client may run this workflow while Codex, Claude, Cursor Agent, or another isolated coding agent performs the review.
 
@@ -60,7 +60,7 @@ The default Codex command is:
 
 ```bash
 codex exec \
-  -m gpt-5.6-sol \
+  -m gpt-6-astra \
   -s read-only \
   -c 'model_reasoning_effort="high"' \
   -o "$REVIEW_DIR/review-1.md" \
