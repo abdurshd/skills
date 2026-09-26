@@ -15,7 +15,7 @@ Resolve the reviewer once before round 1, in this order:
 2. Otherwise use a reviewer configured by the current project or session.
 3. Otherwise default to Claude Code CLI with the `fable` model alias, `--effort high`, read-only plan mode, and only read/search tools enabled.
 
-Use the `fable` alias rather than pinning a version when the user asks for the latest Fable model. At this skill update the alias resolves to Claude Fable 5.1 (`claude-fable-5-1`), but the installed provider or harness is the authority at runtime.
+The current Fable target is Claude Fable 5.1 (`claude-fable-5-1`), verified September 26, 2026. Confirm that the `fable` alias resolves to it before using the alias: older CLI versions and some gateways select Fable 5 instead. Use the full current model ID or provider deployment ID when necessary, and record the actual reviewer model. Claude Code requires v2.1.257 or later for Fable 5.1.
 
 Treat host and reviewer as separate choices. Claude Code, Codex, Cursor, or another Agent Skills client may host this workflow while Fable, Codex, Claude, Cursor Agent, or another isolated coding agent performs the review.
 

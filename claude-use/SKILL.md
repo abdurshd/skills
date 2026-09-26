@@ -9,6 +9,10 @@ Use this skill only after the task is scoped well enough that Codex can act as m
 
 Claude Code CLI is mandatory for this skill. Use the authenticated `claude` executable directly and never silently substitute another harness. If `claude` is unavailable or unauthenticated, stop and report that prerequisite.
 
+## Model selection
+
+The launcher defaults to `opus`, targeting Claude Opus 5.5 (`claude-opus-5-5`, verified September 26, 2026). Claude Code requires v2.1.280 or later for this model. Confirm alias resolution for the provider and environment overrides; pass `--model claude-opus-5-5` or the provider deployment ID if the alias selects an older release. Honor an explicit user model choice and report the actual worker model. Preserve the workflow's high effort default unless the user requests another level.
+
 ## Workflow
 
 1. Build or confirm the plan in Codex first.

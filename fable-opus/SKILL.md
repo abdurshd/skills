@@ -1,6 +1,6 @@
 ---
 name: fable-opus
-description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5.1 as orchestrator and Claude Opus 5 through the latest Opus model selector as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
+description: Orchestrates large implementation plans by keeping the active agent focused on planning, delegation, and verification while isolated worker agents perform all code changes. Defaults to Fable 5.1 as orchestrator and Claude Opus 5.5 through the latest Opus model selector as implementer, but honors any host, worker tool, or model explicitly selected by the user. Use for delegated implementation, parallel workstreams with disjoint ownership, orchestrator-worker pipelines, or requests to implement through Opus, Claude, Codex, Cursor, or another coding agent.
 ---
 
 # Orchestrator delegates, workers implement
@@ -15,7 +15,7 @@ Resolve roles before planning:
 2. Otherwise use compatible project or session configuration.
 3. Otherwise default to Fable 5.1 at high effort for orchestration and the provider or harness's `opus` latest-model alias at xhigh effort for code implementation.
 
-Resolve the latest Opus model at runtime. In Claude Code, select `--model opus`; at this skill update the alias resolves to Claude Opus 5 (`claude-opus-5`). In another provider or harness, use its documented latest-Opus selector or newest generally available Opus release. Record the resolved model, and never describe a fallback or stale pin as the latest Opus.
+Resolve the latest models at runtime. As of September 26, 2026, the targets are Claude Fable 5.1 (`claude-fable-5-1`) and Claude Opus 5.5 (`claude-opus-5-5`). In Claude Code, use `fable` and `opus` only after confirming their resolution for the installed version and provider. Opus 5.5 requires v2.1.280 or later; some providers and gateways resolve aliases to older releases. Select the full current model ID or provider deployment ID when needed. Record the resolved model, and never describe a fallback or stale pin as the latest release.
 
 For browser-driving or computer-use work, default the worker to high effort rather than xhigh. Map effort names to the closest supported setting without increasing cost or depth beyond the user's request.
 

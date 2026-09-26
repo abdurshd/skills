@@ -1,20 +1,20 @@
 ---
 name: claude-review
-description: Use Claude Opus 5 through the authenticated Claude Code CLI as a detached critical reviewer for either (1) implementation-plan review before coding or (2) uncommitted-code review before commit. Trigger this skill when Codex already has a concrete task and either needs an independent Claude review to stress-test the plan against the codebase, security, and correctness concerns, or needs Claude to review local workspace changes for correctness, regressions, security, and alignment with the target task. Best for medium/large tasks, security-sensitive changes, refactors, and any work where Codex should iterate with Claude until the plan or implementation is defensible.
+description: Use Claude Opus 5.5 through the authenticated Claude Code CLI as a detached critical reviewer for either (1) implementation-plan review before coding or (2) uncommitted-code review before commit. Trigger this skill when Codex already has a concrete task and either needs an independent Claude review to stress-test the plan against the codebase, security, and correctness concerns, or needs Claude to review local workspace changes for correctness, regressions, security, and alignment with the target task. Best for medium/large tasks, security-sensitive changes, refactors, and any work where Codex should iterate with Claude until the plan or implementation is defensible.
 ---
 
 # Claude Review via Claude Code
 
-Use this skill when Codex should remain the manager and Claude Opus 5, accessed through the user's authenticated Claude Code CLI, should act as the critical reviewer.
+Use this skill when Codex should remain the manager and Claude Opus 5.5, accessed through the user's authenticated Claude Code CLI, should act as the critical reviewer.
 
 ## Runtime Defaults
 
 - CLI: `claude`
-- model: `opus` (the current Opus alias exposed by Claude Code)
+- model: `opus`, targeting Claude Opus 5.5 (`claude-opus-5-5`, verified September 26, 2026)
 - reasoning: high
 - execution mode: Claude Code `--permission-mode plan`, which is read-only
 
-Claude Code CLI is mandatory for this skill. Invoke the authenticated `claude` executable directly and never silently substitute another harness. If `claude` is unavailable or unauthenticated, stop and report that prerequisite.
+Claude Code CLI is mandatory for this skill. Invoke the authenticated `claude` executable directly and never silently substitute another harness. If `claude` is unavailable or unauthenticated, stop and report that prerequisite. Opus 5.5 requires Claude Code v2.1.280 or later. Confirm alias resolution for the provider and environment overrides; use the launcher's `--model claude-opus-5-5` option or provider deployment ID if `opus` selects an older release. Report the actual reviewer model.
 
 The stable skill and launcher names remain `claude-review` and `claude_review.sh` for compatibility with existing callers.
 

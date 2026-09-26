@@ -18,13 +18,31 @@ Every portable skill follows these rules:
 
 Host, role, provider, and model are separate choices. For example, Cursor can host `fable-opus` while Opus performs implementation, or Claude Code can host `codex-review` while Codex CLI performs the independent review.
 
+## Current coding and reasoning models
+
+Verified against the official provider catalogs on September 26, 2026. This list covers the general-purpose models relevant to these workflows; speech, image, and other specialized models are selected separately.
+
+| Provider | Model | API model ID | Role |
+| --- | --- | --- | --- |
+| OpenAI | GPT-6 Astra | `gpt-6-astra` | Flagship reasoning, orchestration, and independent review |
+| OpenAI | GPT-6 Sol | `gpt-6-sol` | Coding and agent workflows balancing capability and cost |
+| OpenAI | GPT-6 Luna | `gpt-6-luna` | Focused tasks and high-volume work |
+| Anthropic | Claude Fable 5.1 | `claude-fable-5-1` | Demanding reasoning and long-running orchestration |
+| Anthropic | Claude Opus 5.5 | `claude-opus-5-5` | Implementation and independent review |
+| Anthropic | Claude Sonnet 5 | `claude-sonnet-5` | Everyday coding and agent work |
+| Anthropic | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | Simple tasks where speed and cost matter |
+
+Sources: [OpenAI model catalog](https://developers.openai.com/api/docs/models), [Anthropic model catalog](https://platform.claude.com/docs/en/models/overview), and [Claude Code model configuration](https://code.claude.com/docs/en/model-config). Claude Mythos 5.1 is restricted to Project Glasswing participants and is not a default for these skills.
+
+Claude Code requires v2.1.280 or later for Opus 5.5 and v2.1.257 or later for Fable 5.1. Alias resolution varies by provider, gateway, environment overrides, and CLI version. Confirm the resolved model; when an alias selects an older release, use the current full model ID or the provider's deployment ID. User-selected models and effort levels continue to override defaults.
+
 ## Skills
 
 | Skill | Purpose | Defaults and portability |
 | --- | --- | --- |
 | **ship** | Survey, clean, commit, push, migrate, merge, open a PR, or address review comments without confusing “pushed” with “working.” | Fully harness-neutral; requires Git and optionally GitHub CLI. |
-| **fable-opus** | Plan and supervise large work while isolated implementation workers own disjoint workstreams and the orchestrator verifies everything. | Defaults to Fable 5.1 orchestration and Claude Opus 5 through the runtime's latest `opus` model alias for implementation. Both roles and the host are replaceable. |
-| **fable-opus-codex** | Run delegated implementation, then require an independent iterative code-review verdict before shipping. | Defaults to Fable 5.1 → Claude Opus 5 → GPT-6 Astra through Codex CLI. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |
+| **fable-opus** | Plan and supervise large work while isolated implementation workers own disjoint workstreams and the orchestrator verifies everything. | Defaults to Fable 5.1 orchestration and Claude Opus 5.5 through the runtime's latest `opus` model alias for implementation. Both roles and the host are replaceable. |
+| **fable-opus-codex** | Run delegated implementation, then require an independent iterative code-review verdict before shipping. | Defaults to Fable 5.1 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |
 | **codex-review** | Iteratively review and improve an implementation plan until approved or five rounds are reached. | Defaults to Codex CLI with GPT-6 Astra, high reasoning, and read-only access. Any read-only coding reviewer can replace it. |
 | **fable-review** | Iteratively review and improve an implementation plan until approved or five rounds are reached. | Defaults to Claude Code with its latest Fable alias, high effort, and read-only access. Any read-only coding reviewer can replace it. |
 | **claude-review** | Run detached plan or uncommitted-code review with specialist review lenses and a findings-first verdict. | Intentionally Claude Code-specific; defaults to `claude`, Opus, high effort, and read-only Plan permission mode. |
@@ -76,7 +94,7 @@ fable-opus-codex
     └── separate explicit commit, push, merge, or PR step
 ```
 
-The current default pairing is Fable 5.1 → Claude Opus 5 → GPT-6 Astra through Codex CLI. The `fable` and `opus` aliases keep the Anthropic roles on their latest matching releases. Replacing one role does not change the others unless the user asks.
+The current default pairing is Fable 5.1 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. The `fable` and `opus` aliases keep the Anthropic roles on their latest matching releases. Replacing one role does not change the others unless the user asks.
 
 ## Install
 
@@ -152,7 +170,7 @@ Claude Code documents user and project discovery under [`.claude/skills/`](https
 
 - **Portable core skills:** an Agent Skills-compatible client with the file, shell, browser, or Git capabilities required by the task.
 - **Delegated implementation:** a host-native isolated-worker capability or an authenticated non-interactive coding-agent CLI.
-- **Default `fable-opus`:** access to Fable 5.1 through the latest `fable` selector and the provider or harness's latest `opus` model alias. These currently resolve to Claude Fable 5.1 (`claude-fable-5-1`) and Claude Opus 5 (`claude-opus-5`); user-selected alternatives replace the corresponding model requirement.
+- **Default `fable-opus`:** access to Fable 5.1 through the latest `fable` selector and the provider or harness's latest `opus` model alias. These currently resolve to Claude Fable 5.1 (`claude-fable-5-1`) and Claude Opus 5.5 (`claude-opus-5-5`); user-selected alternatives replace the corresponding model requirement.
 - **Default `codex-review`:** an installed and authenticated [OpenAI Codex CLI](https://github.com/openai/codex).
 - **Default `fable-review`:** an installed and authenticated [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/cli-usage) with access to its latest `fable` model alias.
 - **`claude-review`:** an installed and authenticated Claude Code CLI with Opus access; the launcher enforces read-only Plan permission mode and does not substitute another harness.

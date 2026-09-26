@@ -1,6 +1,6 @@
 # Claude Review Prompt Template
 
-Use one of these templates depending on the review mode. The launcher sends the completed brief to Claude Opus 5 through Claude Code CLI in read-only Plan permission mode.
+Use one of these templates depending on the review mode. The launcher sends the completed brief to Claude Opus 5.5 through Claude Code CLI in read-only Plan permission mode.
 
 ## Plan Review Brief
 
