@@ -38,7 +38,7 @@ Claude Code requires v2.1.280 or later for Opus 5.5 and v2.1.257 or later for Fa
 
 ## Skills
 
-Choose a skill based on what you need next. These 15 skills cover planning, implementation, independent review, design, video creation, and delivery.
+Choose a skill based on what you need next. These 16 skills cover planning, implementation, independent review, design, video creation, and delivery.
 
 | Skill | When to use it | Defaults and portability |
 | --- | --- | --- |
@@ -56,6 +56,7 @@ Choose a skill based on what you need next. These 15 skills cover planning, impl
 | **sidebar-x** | Use this when your dashboard's navigation changes shape between pages or makes settings, accounts, and organizations hard to find. It builds one consistent sidebar with clear submenus, pinned account and organization controls, permission-aware visibility, and mobile navigation. | Fully harness-neutral and framework-neutral; maps onto the host project's own design tokens. |
 | **genvid-onboard** | Use this when people need a step-by-step video showing how to set up or use your product. It follows the real interface and workflow to create a narrated walkthrough with cursor actions, captions, and a finished MP4. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
 | **genvid-promo** | Use this when you need a launch video, feature teaser, or social promo for your product. It turns verified product screens and capabilities into an animated, narrated video without inventing features, testimonials, or metrics. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
+| **genvid-collage** | Use this when you want a scroll-stopping social promo in the style of a wildlife documentary: generated photo cutouts on aged paper, rubber stamps, binocular shots, and a deadpan narrator who observes your user's pain before revealing the product. It generates every character, prop, and clip, verifies the narration line by line, and times each motion to the spoken words. | Harness-neutral workflow; requires Remotion, a TTS provider and its secret, and image/video generators with reference-image consistency (e.g. Google Flow). |
 | **genvid-tutor** | Use this when you want to teach a topic through a complete video, not just generate a script. It researches the lesson, builds animated explanations and examples, and renders an MP4 with synchronized narration and captions. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
 
 ## Multi-agent routing

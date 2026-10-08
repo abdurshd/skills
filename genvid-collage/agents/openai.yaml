@@ -1,0 +1,4 @@
+interface:
+  display_name: "GenVid Collage"
+  short_description: "Generate documentary-style paper-collage promo videos"
+  default_prompt: "Use $genvid-collage to create a documentary-style paper-collage promo video with generated characters, props, and clips, verified narration, and a rendered vertical MP4."
