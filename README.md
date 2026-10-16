@@ -2,7 +2,7 @@
 
 [![skills.sh](https://skills.sh/b/abdurshd/skills)](https://skills.sh/abdurshd/skills)
 
-Reusable [Agent Skills](https://agentskills.io/) for implementation, review, design, video production, internationalization, and shipping. Each skill is a self-contained folder with a standard `SKILL.md` plus optional scripts and references.
+Reusable [Agent Skills](https://agentskills.io/) for implementation, review, design, video production, startup listings, internationalization, and shipping. Each skill is a self-contained folder with a standard `SKILL.md` plus optional scripts and references.
 
 The workflow belongs to the skill, not to the application hosting it. The same folder can run in Claude Code, Codex, Cursor, or another compatible coding agent when that client exposes the capabilities the workflow needs.
 
@@ -38,10 +38,11 @@ Claude Code requires v2.1.280 or later for Opus 5.5 and v2.1.257 or later for Fa
 
 ## Skills
 
-Choose a skill based on what you need next. These 16 skills cover planning, implementation, independent review, design, video creation, and delivery.
+Choose a skill based on what you need next. These 17 skills cover planning, implementation, independent review, design, video creation, startup listings, and delivery.
 
 | Skill | When to use it | Defaults and portability |
 | --- | --- | --- |
+| **[free-startup-listings](free-startup-listings/SKILL.md)** | Use this to learn a startup from its codebase and publish relevant free directory listings with owner permission. It prepares copy and product assets, handles required homepage badges, deploys approved changes, and verifies public results. | Fully harness-neutral; requires repository access, web research, an authenticated browser, and the project's deployment capability for badges. |
 | **ship** | Use this when your changes are ready to commit, push, merge, or turn into a pull request. It checks the diff, keeps temporary files and secrets out of the commit, and reports what still needs verification after shipping. | Fully harness-neutral; requires Git and optionally GitHub CLI. |
 | **fable-opus** | Use this when a large feature or refactor needs several focused implementation workers. One agent plans and supervises the work while isolated workers make changes, then the supervisor verifies the result. | Defaults to Fable 5.1 orchestration and Claude Opus 5.5 through the runtime's latest `opus` model alias for implementation. Both roles and the host are replaceable. |
 | **fable-opus-codex** | Use this when you want delegated implementation followed by an independent code review before shipping. It separates planning, coding, and review, then sends confirmed findings back for fixes. | Defaults to Fable 5.1 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |

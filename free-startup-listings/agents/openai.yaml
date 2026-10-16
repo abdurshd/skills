@@ -1,0 +1,4 @@
+interface:
+  display_name: "Free Startup Listings"
+  short_description: "Publish free startup listings and required badges"
+  default_prompt: "Use $free-startup-listings to learn my startup from this codebase, prepare relevant free directory listings, and publish listings and required homepage badges with my approval."
