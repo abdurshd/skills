@@ -1,17 +1,18 @@
 ---
 name: free-startup-listings
-description: "Research a startup from its codebase, website, available chat history and memory, then prepare and publish relevant free directory listings with owner permission. Handle missing facts, existing accounts, screenshots, product copy, reciprocal or dofollow badge requirements, homepage badge implementation, approved deployment, and public verification. Use for startup directory submissions, free launch campaigns, business/software profiles, or completing listings on TinyLaunch, TinyShelf, Product Hunt, Trustpilot, SourceForge, G2, Fazier, Startup Fame, Twelve Tools, Peerlist, Capterra, GetApp, and Software Advice."
+description: "Research relevant free startup, SaaS, developer-tool and business directories, including dofollow backlink opportunities, or prepare and publish approved listings. Use for directory discovery, free launch campaigns and software profiles. Covers product research, copy and assets, existing accounts, reciprocal badges, approved releases and public-link verification."
 ---
 
 # Free Startup Listings
 
-Carry a startup's free listing campaign through research, prepared forms, authorized publication, required homepage badges, and verification. Complete every relevant destination in the agreed campaign; do not stop after producing a list of recommendations. Third-party acceptance, free availability, public rollout, indexing, and DR changes cannot be guaranteed.
+Match the requested mode. For research-only work, deliver a sourced inventory with current free conditions and link evidence. For an execution campaign, carry every agreed destination through prepared forms, authorized publication, required homepage badges, and verification. Third-party acceptance, free availability, public rollout, indexing, and DR changes cannot be guaranteed.
 
 This is a portable workflow. Use the host's available file, search, authenticated browser, image, and deployment capabilities. Follow any applicable browser skill and repository instructions. Do not assume a particular coding agent, browser automation library, framework, cloud provider, or installed plugin. If a capability is unavailable, prepare everything possible and name the exact owner action needed.
 
 ## Read supporting files when needed
 
-- [Directory playbook](references/directories.md): read when building the inventory and before working on one of its platforms. It covers 13 destinations and lessons from the source campaign, not a promise that their free routes remain unchanged.
+- [Directory playbook](references/directories.md): read when building the inventory and before working on one of its platforms. It covers 13 original seeds, nine additional software routes and campaign lessons; recheck current availability.
+- [Free dofollow directory catalog](references/free-dofollow-directories.md): read for expanded discovery or backlink-focused research. It records 30 additional $0 routes checked October 30, 2026, five inspected sample links, community-gated alternatives and rejected or unresolved leads. These are dated leads, not guaranteed free listings or earned backlinks.
 - [Homepage badges and releases](references/badges-and-release.md): read before integrating or deploying any badge, including a reciprocal or dofollow requirement.
 - [Campaign template](assets/campaign-template.md): copy into an appropriate project artifact directory when starting a campaign. Fill relevant sections; retain the record across sessions. Do not edit this bundled template for an individual startup.
 
@@ -35,9 +36,11 @@ Ask concise, bundled questions only for material facts that remain missing, conf
 
 ## 2. Establish scope, cost, and permission
 
-Read the directory playbook and evaluate all 13 seed destinations unless the owner narrowed the scope. Reuse existing profiles; do not create a second listing to get around an ownership or duplicate-name check.
+For a new full execution campaign, read the directory playbook and evaluate the 13 original seeds unless the owner narrowed the scope. For research-only requests or expansions of an existing campaign, use the existing ledger to exclude already-covered destinations and honor holds. Reuse existing profiles; do not create a second listing to get around an ownership or duplicate-name check.
 
 Search for additional relevant free directories using the product category, audience, region, and language. Verify free submission on the directory's own current site. Assess audience fit and actual listing usefulness as well as backlink availability. Do not discard a useful free route solely because it requires a visible reciprocal badge. Keep discovered candidates in the ledger, including those rejected as paid or unsuitable.
+
+For dofollow-focused work, use the expanded catalog's evidence method. Separate $0 without a backlink, $0 with a continuing reciprocal requirement, engagement/winner gates, temporary listings and paid-only routes. Distinguish a publisher's promise from an inspected sample and from the startup's actual live link. A sample's paid/free tier may be unknown. Record contradictory policies and shared-directory relationships rather than presenting every domain as an independent audience.
 
 “All free places” means comprehensive execution over a recorded inventory, not an unbounded internet crawl or a claim that every directory was found. Work in batches. If no boundary is supplied, evaluate the seeds, search for additional category/region-specific opportunities, and finish the verified relevant batch before expanding. Record the search scope and remaining candidates.
 

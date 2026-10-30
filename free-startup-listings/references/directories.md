@@ -2,7 +2,9 @@
 
 ## How to use this catalog
 
-These 13 destinations come from a real startup-listing campaign. Operational observations below were recorded in September–October 2026; **recheck the current site, free tier, terms, limits, badge requirements, and publication route on every run**. This is not evidence that a new startup is eligible or that all historical submissions succeeded. Do not copy the source startup's identity, account IDs, pricing, or badges into a new campaign.
+The 13 original seeds and nine additional software routes below come from real startup-listing campaigns. Operational observations were recorded in September–October 2026; **recheck the current site, free tier, terms, limits, badge requirements, and publication route on every run**. This is not evidence that a new startup is eligible or that all historical submissions succeeded. Do not copy the source startup's identity, account IDs, pricing, or badges into a new campaign.
+
+For another 30 dated $0 routes and their dofollow conditions, read the [expanded free dofollow catalog](free-dofollow-directories.md). It also records alternatives with community gates and leads rejected as paid, winner-only or unproven.
 
 Start from the public entry points below or an owner-provided authenticated tab. Follow observed links for product-specific dashboards and slugs. If a route redirects or a marketplace changes operators, inspect the live destination rather than inventing URLs or creating a duplicate product.
 
@@ -92,9 +94,27 @@ The source owner declined verification after encountering a paid step. Keep comp
 
 ## Discover more relevant free routes
 
+### Additional software and founder routes
+
+These routes were evaluated on October 30, 2026. Their historical free availability does not establish current acceptance or dofollow status for another startup.
+
+| Destination | Official entry point | Operational observation and next check |
+| --- | --- | --- |
+| Tools Rodeo | [Tools Rodeo](https://www.tools.rodeo/) | Free product listing observed with nofollow when no reciprocal badge was installed. Verify the optional badge route before claiming dofollow. |
+| Uneed | [Uneed](https://www.uneed.best/) | Free waiting line; displayed score thresholds affected continued publication and dofollow. The source run showed 10 to remain published and 20 for dofollow. Recheck current rules; do not manufacture votes. |
+| SaaS Browser | [SaaS Browser](https://saasbrowser.com/) | Standard free review queue advertised as 2–4 weeks. Optional analytics installation was not needed for the free submission. A receipt is not a public listing or dofollow proof. |
+| TheSaaSDir | [TheSaaSDir](https://thesaasdir.com/) | Free submission required a homepage badge. An issued product URL can still return 404 while moderation is pending. |
+| TheDevToolsDir | [TheDevToolsDir](https://thedevtoolsdir.com/) | Free badge-dependent route with developer categories. Preserve the exact issued badge target; verify approval separately. |
+| SaaSHub | [SaaSHub](https://www.saashub.com/) | Standard free review queue advertised as 1–12 weeks; email/domain verification is separate from submission and approval. |
+| AlternativeTo | [AlternativeTo](https://alternativeto.net/) | Free app suggestion required a verified account email. Confirm eligibility and existing app records before suggesting an alternative. |
+| Launching Next | [Launching Next](https://www.launchingnext.com/) | Free route separate from paid expedited review. Funding, planned marketing spend and a human check may be required; do not invent owner facts. |
+| DevHunt | [DevHunt](https://devhunt.org/) | A free saved product page can coexist with a launch scheduled years away. The inspected website link was nofollow; verify actual launch timing and outbound attributes independently. |
+
+### Search beyond the catalog
+
 Use search to find category, regional, developer, or founder directories appropriate to the product. Verify the submit route, eligibility, audience, fee, badge, moderation/schedule, and sample public pages using primary sources. Aggregator lists are leads, not proof of free availability or dofollow links. Search the product's domain on each candidate first to avoid duplicates.
 
-An earlier related campaign also encountered SubmitForBacklinks, Dodo Payments Index, Uneed, CodeHype, Aura++, Nick Launches, ctrlalt, BetterLaunch, and What Launched Today. These are optional discovery leads, not verified-current free defaults. Look up their official routes and record current conditions before adding them to the approved inventory. Reject an unrelated service or a paid-only route with a reason rather than forcing it into the campaign.
+An earlier related campaign also encountered SubmitForBacklinks, Dodo Payments Index, Aura++, Nick Launches, ctrlalt, and What Launched Today. These remain discovery leads, not verified-current free defaults. Uneed is covered above; CodeHype and Better Launch have dated checks in the expanded catalog. Look up current official conditions before adding any lead to the approved inventory. Reject an unrelated service or a paid-only route with a reason rather than forcing it into the campaign.
 
 ## Backlink and outcome claims
 

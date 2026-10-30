@@ -9,6 +9,7 @@ Copy this file into the project's appropriate artifact directory and replace the
 - Homepage / footer / localization entry points:
 - Production release instructions and target:
 - Owner's requested destinations, excluded sites, and discovery scope:
+- Requested mode: research only / approved execution; prior inventory excluded from new counts:
 - Cost constraint: free listing; no purchases or paid verification unless separately authorized.
 - Placement: below the homepage footer by default; owner overrides:
 - Deployment hold, if any; exact instruction that lifts it:
@@ -68,6 +69,11 @@ Per-destination details, when applicable:
 Directory:
 Official entry point and observed editor URL:
 Current free route, eligibility, conditions and evidence:
+Cash cost; recurring badge/backlink obligation and required placement:
+Free follow route: unconditional / badge-dependent / engagement-gated / winner-only / temporary / unproven:
+Policy URL and checked date; conflicts or shared-directory relationships:
+Sample URL, observed target/rel and checked date; sample plan known or unknown:
+Expiry/renewal conditions; free queue and launch capacity, if applicable:
 Existing listing/account; duplicate check result:
 Required fields/limits/assets; missing owner facts:
 Selected categories and verified pricing:
@@ -80,6 +86,7 @@ Submission time and receipt/listing ID:
 Moderation status and dashboard publication status:
 Public URL, check time and result (live / 404 / access-blocked / unknown):
 Actual outbound link target and observed rel attributes:
+Actual startup link checked separately from publisher promise/sample; indexing/robots evidence or unknown:
 Owner/manual action or external dependency:
 Next action and evidence artifact location:
 ```
@@ -114,4 +121,5 @@ Use precise states: `not evaluated`, `ineligible`, `paid-only`, `existing`, `pre
 - Skipped/paid-only/declined destinations, with reason:
 - Exact owner actions still needed:
 - Remaining discovery scope/candidates:
+- Research-only candidates, separated from new submissions and earned backlinks:
 - Indexing, DR, referrals, and conversions: unknown unless independently measured; record actual evidence separately.
