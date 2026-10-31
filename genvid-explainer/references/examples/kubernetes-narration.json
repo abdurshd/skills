@@ -1,0 +1,16 @@
+{
+  "s01_hook": "Telefoningizda bitta tugmani bosasiz. Shu soniyada dunyoning boshqa chekkasida minglab kompyuterlar siz uchun ishlay boshlaydi. Ularni kim boshqaradi? Odam emas. Kubernetes.",
+  "s02_lead": "Ikki daqiqada Kubernetes nima ekanini oddiy tilda tushunib olasiz. Dasturlashni bilish shart emas.",
+  "s03_server": "Har bir sayt yoki ilova aslida koddan iborat. Bu kod internetga doim ulangan kuchli kompyuterda ishlaydi. Uni server deymiz.",
+  "s04_cpu": "Server ichidagi protsessor har soniyada milliardlab amal bajaradi. Kodni serverga joylab, odamlar ishlata oladigan holga keltirish esa deploy deyiladi.",
+  "s05_problem": "Lekin bu yerda mashhur muammo bor. Dasturchining kompyuterida hammasi ishlaydi, serverda esa yo'q. Chunki serverda boshqa versiyalar, boshqa sozlamalar turadi.",
+  "s06_shipping": "Xuddi shunday muammo bir paytlar dengiz yuk tashishida ham bo'lgan. Yuklar qop-qop, quti-quti qilib, qo'lda ortilardi. Bu sekin va qimmat edi. Ming to'qqiz yuz ellik oltinchi yilda oddiy bir g'oya hammasini o'zgartirdi: bir xil o'lchamdagi temir konteyner. Ichida nima bo'lishidan qat'i nazar, uni istalgan kema, poyezd yoki yuk mashinasi tashiy oladi.",
+  "s07_container": "Dasturlashdagi konteyner ham xuddi shu g'oya. Unga kodning o'zi va ishlashi uchun kerak bo'lgan hamma narsa joylanadi. Natijada konteyner noutbukda ham, serverda ham bir xil ishlaydi.",
+  "s08_scale": "Endi tasavvur qiling: ilovangizdan millionlab odam foydalanmoqda. Sizga bitta emas, yuzlab konteyner kerak. Ularning ba'zilari tunda ishdan chiqadi. Kim kuzatadi, kim tuzatadi?",
+  "s09_kitchen": "Katta osh markazini ko'z oldingizga keltiring. Qozonlar bu serverlar. Har bir qozondagi osh bitta konteyner. Bosh oshpaz o'zi osh damlamaydi. U faqat kuzatadi va buyruq beradi. Uning qoidasi oddiy: doim beshta qozon tayyor tursin.",
+  "s10_heal": "Bitta qozon kuyib qolsa, darhol yangisiga o't yoqiladi. Tushlikda olomon kelsa, qozonlar ko'payadi. Odamlar ketsa, kamayadi va gaz tejaladi. Kubernetes ana shu bosh oshpaz. Faqat u qozonlarni emas, serverlardagi konteynerlarni boshqaradi.",
+  "s11_terms": "Kubernetes tilida har bir server node deyiladi. Konteynerlar esa pod ichida ishlaydi. Pod Kubernetes boshqaradigan eng kichik bo'lak. Siz faqat nima kerakligini yozasiz: masalan, doim beshta nusxa ishlasin. Qolganini Kubernetes o'zi bajaradi.",
+  "s12_name": "Kubernetes so'zi yunon tilida kema boshqaruvchisi degani. Shuning uchun uning belgisi kema shturvali. Uni Google yaratgan va ikki ming o'n to'rtinchi yilda hamma uchun ochiq qilgan.",
+  "s13_summary": "Bir jumlada: konteyner dasturni qadoqlaydi, Kubernetes esa minglab konteynerlarni o'zi ishga tushiradi, kuzatadi va tuzatadi.",
+  "s14_outro": "Bu videoni dasturchi bo'lishni orzu qilgan do'stingizga yuboring."
+}

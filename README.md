@@ -38,7 +38,7 @@ Claude Code requires v2.1.280 or later for Opus 5.5 and v2.1.257 or later for Fa
 
 ## Skills
 
-Choose a skill based on what you need next. These 18 skills cover planning, implementation, independent review, design, video creation, startup and connector listings, and delivery.
+Choose a skill based on what you need next. These 19 skills cover planning, implementation, independent review, design, video creation, startup and connector listings, and delivery.
 
 | Skill | When to use it | Defaults and portability |
 | --- | --- | --- |
@@ -60,6 +60,7 @@ Choose a skill based on what you need next. These 18 skills cover planning, impl
 | **genvid-promo** | Use this when you need a launch video, feature teaser, or social promo for your product. It turns verified product screens and capabilities into an animated, narrated video without inventing features, testimonials, or metrics. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
 | **genvid-collage** | Use this when you want a scroll-stopping social promo in the style of a wildlife documentary: generated photo cutouts on aged paper, rubber stamps, binocular shots, and a deadpan narrator who observes your user's pain before revealing the product. It generates every character, prop, and clip, verifies the narration line by line, and times each motion to the spoken words. | Harness-neutral workflow; requires Remotion, a TTS provider and its secret, and image/video generators with reference-image consistency (e.g. Google Flow). |
 | **genvid-tutor** | Use this when you want to teach a topic through a complete video, not just generate a script. It researches the lesson, builds animated explanations and examples, and renders an MP4 with synchronized narration and captions. | Harness-neutral workflow; requires Remotion, a selected TTS provider, and its secret. |
+| **[genvid-explainer](genvid-explainer/SKILL.md)** | Use this when you want a finished 2–3 minute explainer from just a topic: it writes a beginner script with everyday analogies, voices it, generates stills and Veo clips, builds Remotion 3D and motion-graphics scenes synced word by word, mixes music, and renders a reviewed MP4. Defaults to Uzbek. | Harness-neutral workflow with one approval gate (script, assets, video credits). Scene code goes to the user-named coder, otherwise GPT-6 Astra inside Codex, otherwise Claude Opus 5.5. Requires Remotion, Speko TTS, an authenticated browser for ChatGPT and Google Flow, and a git-ignored `local.md` of machine paths. |
 
 ## Multi-agent routing
 
@@ -145,7 +146,7 @@ mkdir -p ~/.agents/skills
 cp -R ship fable-opus fable-opus-codex codex-review fable-review \
   claude-review claude-use codex-grok \
   fix-findings i18n-sweep unslopify sidebar-x \
-  genvid-onboard genvid-promo genvid-tutor \
+  genvid-onboard genvid-promo genvid-tutor genvid-explainer \
   ~/.agents/skills/
 ```
 

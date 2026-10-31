@@ -42,12 +42,13 @@
     },
     {
       "title": "Video production",
-      "description": "Produce onboarding, promotional, and educational videos from verified material.",
+      "description": "Produce onboarding, promotional, educational, and explainer videos from verified material.",
       "skills": [
         "genvid-onboard",
         "genvid-promo",
         "genvid-collage",
-        "genvid-tutor"
+        "genvid-tutor",
+        "genvid-explainer"
       ]
     }
   ]

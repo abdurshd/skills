@@ -1,0 +1,4 @@
+interface:
+  display_name: "GenVid Explainer"
+  short_description: "Turn a topic into a narrated 3D motion-graphics explainer video"
+  default_prompt: "Use $genvid-explainer to make a 2–3 minute Uzbek explainer video about <topic>."
