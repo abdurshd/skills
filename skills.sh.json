@@ -34,9 +34,10 @@
     },
     {
       "title": "Startup promotion",
-      "description": "Research and publish free startup listings, integrate required badges, and verify approved releases.",
+      "description": "Research and publish startup, MCP, and integration listings, verify public availability, and handle required badges.",
       "skills": [
-        "free-startup-listings"
+        "free-startup-listings",
+        "mcp-connector-listings"
       ]
     },
     {

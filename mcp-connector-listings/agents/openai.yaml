@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP & Connector Listings"
+  short_description: "Submit and verify MCP and integration listings"
+  default_prompt: "Use $mcp-connector-listings to prepare, submit, and verify relevant MCP and native integration listings for my product, reusing existing registrations and tracking review, public availability, health, and backlink evidence separately."
