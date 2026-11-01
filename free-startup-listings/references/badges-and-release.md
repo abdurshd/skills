@@ -32,6 +32,8 @@ Keep outbound homepage badges and inbound directory backlinks separate in the re
 
 Adapt HTML to the actual framework. For example, React uses `className` and a JavaScript style object, while plain HTML uses `class` and CSS declarations. Do not paste JSX into an HTML template or HTML style syntax into JSX. Follow the project's supported remote-image loading approach; validate CSP/optimizer behavior before claiming images work.
 
+If a checker insists on unchanged HTML, compare its supplied snippet with the actual server response, not only the hydrated DOM. In a November 2 SaaSaur submission, the crawler received HTTP 200 but rejected a renderer-modified image tag; preserving the audited fixed vendor image markup made verification pass. Keep any literal markup static and reviewed, preserve accessible duplicate handling, and retry only after the serving release contains it. Do not assume the same cause for every checker failure.
+
 ## Prepare a concrete release
 
 Batch the ready badge additions into a reviewable change with a preview or screenshot, exact directory links, placement, and relevant consent conditions. Keep a manifest in the campaign record. A generic approval for an earlier batch does not automatically cover new scripts, new public messages, or unrelated website edits. Additional badges can join the release when the owner's current instruction explicitly authorizes them.
