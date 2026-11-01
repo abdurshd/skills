@@ -88,6 +88,8 @@ For each destination:
 
 Do not complete paid milestones, fake reviews, reciprocal upvotes, or fabricated customer activity to make a checklist reach 100%. Free and meaningful profile completeness is the objective. Draft any mandatory community comments from actual product observations; disclose affiliation when relevant and obtain specific posting permission.
 
+If the owner explicitly delegates a genuine product comparison, inspect both candidates before choosing and record the practical reason for each selection. Do not claim personal usage or vote randomly to clear a gate. Without that specific delegation, leave subjective participation to the owner.
+
 When an interaction fails, inspect the state before retrying. For a timeout after Submit/Publish, check dashboard and receipt before resubmitting. For repeated validation failures, inspect actual error text and active form, shorten within the accepted limit, and confirm persistence. For a stuck file picker or native modal, use the supported upload/native UI capability; after a bounded attempt, ask the owner for the exact click or file selection with prepared paths. Do not keep repeating an action that has not changed the state.
 
 ## 5. Add and release required homepage badges
