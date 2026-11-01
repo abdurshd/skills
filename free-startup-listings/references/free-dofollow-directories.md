@@ -4,6 +4,8 @@ Research baseline: **2026-10-30**. This catalog records **30 additional distinct
 
 These are dated discovery leads with a published $0 route and operator-policy or sample-link evidence. They are not preapproved destinations, guaranteed current offers, accepted listings or earned backlinks. Recheck the live policy and form before each campaign. The user may request discovery only; this catalog does not authorize publication, accounts, votes, comments or badge deployment.
 
+Selected routes were rechecked during execution on **2026-11-02**. The rows below include newly observed eligibility and participation gates; other baseline observations remain dated October 30. Check domain-rating thresholds before preparing a long application. A directory's own checker can provide an eligibility result; record its reported metric and source without treating a saved draft as a submitted listing.
+
 ## Evidence method
 
 - Use aggregators to find leads, then verify cost, eligibility and return-link conditions on the operator's own pricing, submission, FAQ or badge page. Record the URL and check date. A page requesting a dofollow link *to the directory* does not prove that the directory links back as dofollow.
@@ -30,7 +32,7 @@ All 27 rows below need a reciprocal link or badge. Recheck the required placemen
 
 | Directory / entry | Official policy | $0 route and conditions | Advertised queue / checks |
 | --- | --- | --- | --- |
-| [DailyLaunch](https://dailylaunch.io/) | [Policy](https://dailylaunch.io/) | Free forever with a verified badge for dofollow; manual approval applies. | After approval, next-day launch advertised at 15:00 UTC |
+| [DailyLaunch](https://dailylaunch.io/) | [Policy](https://dailylaunch.io/) | Free forever with a verified badge for dofollow; manual approval applies. November 2 execution also required a genuine like or comment on another maker before continuing. Leave that choice to the owner unless specific participation is authorized. | After approval, next-day launch advertised at 15:00 UTC |
 | [directree](https://www.directree.io/pricing) | [Policy](https://www.directree.io/saas-directory) | Free submit/claim route requires domain verification and an embedded badge. Dofollow follows approval, not draft creation. | Approval queue; quoted wait varies by page |
 | [Findly.tools](https://findly.tools/about) | [Policy](https://findly.tools/about) | Free public listing; dofollow remains conditional on keeping the verified badge. | Sign in and review |
 | [SaaSLineup](https://saaslineup.com/submit/) | [Policy](https://saaslineup.com/pricing/) | Free plan promises one dofollow link; keep badge installed. No account required. | Immediate if badge verified; otherwise review advertised within 7 days |
@@ -44,19 +46,19 @@ All 27 rows below need a reciprocal link or badge. Recheck the required placemen
 | [StartupDirectory](https://startupdirectory.net/pricing) | [Policy](https://startupdirectory.net/pricing) | Free forever plan advertises badge-verified dofollow; terms retain discretion to change link attributes. | Site advertises instant listing after badge verification |
 | [ExitFounder](https://www.exitfounder.io/badge) | [Policy](https://www.exitfounder.io/badge) | Free dofollow requires a detectable server-rendered homepage badge or approved profile link; weekly rechecks. | Verification; weekly rechecks |
 | [Noonlaunch](https://noonlaunch.com/) | [Policy](https://noonlaunch.com/launch-with-ai) | Free dofollow while badge stays verified; daily checks. Winning a top-three position is not required for this route. | Free queue; up to two free launches per maker advertised |
-| [LaunchAF](https://launchaf.com/) | [Policy](https://launchaf.com/) | Free route requires badge verification and review; dofollow while badge stays. | Free review/launch queue; usually 30+ days advertised |
-| [Better Launch](https://www.betterlaunch.co/pricing) | [Policy](https://www.betterlaunch.co/pricing) | Free links default to nofollow; verified badge enables dofollow without needing to win. | Choose a Monday at least 30 days out |
+| [LaunchAF](https://launchaf.com/) | [Policy](https://launchaf.com/) | Free route requires badge verification and review; dofollow while badge stays. The form requires a personal founder X handle. November 2 execution required three product upvotes after badge verification before Submit for review was enabled; leave genuine choices to the owner. | Free review/launch queue; usually 30+ days advertised |
+| [Better Launch](https://www.betterlaunch.co/pricing) | [Policy](https://www.betterlaunch.co/pricing) | Free links default to nofollow; verified badge enables dofollow without needing to win. November 2 execution required three product-comparison votes to continue the free submission. Obtain genuine owner choices rather than voting just to unlock publication. | Choose a Monday at least 30 days out |
 | [ScrollLaunch](https://www.scrolllaunch.com/pricing) | [Policy](https://www.scrolllaunch.com/pricing) | Free product-page link is dofollow while badge/profile backlink remains; weekly checks. Feed/archive links stay nofollow. | 25 free slots per week advertised |
 | [DailyPings](https://dailypings.com/pricing) | [Policy](https://dailypings.com/pricing) | Free route requires a detectable homepage badge; dofollow while verified. Do not infer paid perks from flattened pricing text. | Homepage detection and daily checks |
 | [Dofollow.Tools](https://dofollow.tools/pricing) | [Policy](https://dofollow.tools/pricing) | Free plan requires a continuing badge; removal changes the return link to nofollow. | 7-day queue; 5 free daily slots advertised |
 | [First Look](https://firstlook.tools/pricing) | [Policy](https://firstlook.tools/pricing) | Free dofollow while badge stays verified; weekly checks. Paid cross-directory offers are separate. | 7-day queue; weekly badge checks |
 | [Brick Launch](https://bricklaun.ch/) | [Policy](https://bricklaun.ch/) | Free plan includes dofollow with a badge; badge-free listing is paid. | Free submission/review |
 | [LaunchPaddock](https://launchpaddock.com/) | [Policy](https://launchpaddock.com/) | Free mutual dofollow requires a footer badge retained on the product site. | Review; periodic badge checks |
-| [PublishYourSaaS](https://publishyoursaas.com/submit) | [Policy](https://publishyoursaas.com/submit) | Submission form has a Free Launch $0 option despite a generic paid heading. Badge verification enables dofollow; otherwise nofollow. | Manual review advertised as 2–3 weeks; checks every 24 hours |
+| [PublishYourSaaS](https://publishyoursaas.com/submit) | [Policy](https://publishyoursaas.com/submit) | Anonymous submission form has a Free Launch $0 option despite a generic paid heading and paid default. A verified badge is required before free submission. Final declarations cover prohibited content, publishing rights, Terms and Privacy. | November 2 form advertised 30 days to 3 months for free review; badge checked daily |
 | [SaaSaur](https://saasaur.com/pricing) | [Policy](https://saasaur.com/pricing) | Free card/comparison offers badge-dependent dofollow, but lower FAQ says free is nofollow. Resolve this conflict and inspect the actual link before counting success. | 7 free daily slots advertised |
 | [CodeHype](https://www.codehype.ai/pricing) | [Policy](https://www.codehype.ai/pricing) | Current codehype.ai Free Launch is $0 with badge-dependent dofollow; badge rechecked every three days. Human review applies to all tiers. | Standard queue; all launches undergo human review |
-| [SaaSFame](https://saasfame.com/pricing) | [Policy](https://saasfame.com/pricing) | Current free plan advertises one dofollow link and a permanent badge. Distinct from Startup Fame (startupfa.me). | Up to 180 days for free review |
-| [ToolFame](https://toolfame.com/pricing) | [Policy](https://toolfame.com/pricing) | Current free plan advertises one dofollow link and a permanent badge; older three-link/two-week descriptions are stale. | Up to 180 days for free review |
+| [SaaSFame](https://saasfame.com/pricing) | [Policy](https://saasfame.com/pricing) | November 2 free plan requires Ahrefs DR ≥ 10, checked in the submission UI, plus a permanent verified badge; one dofollow link. A draft can be saved before the DR check and remain Unsubmitted. Distinct from Startup Fame (startupfa.me). | Up to 180 days for free review |
+| [ToolFame](https://toolfame.com/pricing) | [Policy](https://toolfame.com/pricing) | November 2 free plan requires DR ≥ 10 and a permanent verified badge; one dofollow link. Older three-link/two-week descriptions are stale. | Up to 180 days for free review |
 
 ## Rendered samples inspected at the baseline
 
@@ -73,6 +75,8 @@ These five public samples had outbound website anchors without `nofollow`, `spon
 ## Additional $0 routes with community gates
 
 Keep these two outside an automatic-submission batch. Public participation needs applicable owner authorization and real judgment; never fabricate usage, reviews or reciprocal votes to satisfy a gate.
+
+DailyLaunch and Better Launch in the main catalog also exposed participation gates during November 2 execution; the same owner-judgment boundary applies to those steps. A free price alone does not make a route fully automatic.
 
 | Directory / policy | Baseline conditions |
 | --- | --- |
