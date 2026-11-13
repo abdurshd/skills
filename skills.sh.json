@@ -17,9 +17,10 @@
     },
     {
       "title": "Quality & delivery",
-      "description": "Verify findings, internationalize interfaces, and safely ship completed work.",
+      "description": "Verify findings, review HTML pages with the user, internationalize interfaces, and safely ship completed work.",
       "skills": [
         "fix-findings",
+        "html-review",
         "i18n-sweep",
         "ship"
       ]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML Review"
+  short_description: "Review an agent-written HTML page in a secured local Lavish window"
+  default_prompt: "Use $html-review to build this as a local HTML page, open it in the secured review window and wait for my annotations."

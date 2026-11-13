@@ -38,7 +38,7 @@ Claude Code requires v2.1.280 or later for Opus 5.5; older versions may resolve 
 
 ## Skills
 
-Choose a skill based on what you need next. These 19 skills cover planning, implementation, independent review, design, video creation, startup and connector listings, and delivery.
+Choose a skill based on what you need next. These 20 skills cover planning, implementation, independent review, HTML review, design, video creation, startup and connector listings, and delivery.
 
 | Skill | When to use it | Defaults and portability |
 | --- | --- | --- |
@@ -53,6 +53,7 @@ Choose a skill based on what you need next. These 19 skills cover planning, impl
 | **claude-use** | Use this when your plan is already agreed and you want Claude Code to handle the implementation while your current agent stays in charge. It gives the worker a detailed brief, keeps inspectable logs, and checks the delivered changes. | Intentionally Claude Code-specific; defaults to `claude`, Opus, high effort, and explicit implementation permissions. |
 | **codex-grok** | Use this when you specifically want Codex to plan and verify while Grok writes the code. It uses a fixed two-model setup with safety checks and bounded worker tasks rather than a general-purpose agent pairing. | Intentionally provider-specific because its safety wrapper validates exact CLI flags. Use `fable-opus` for arbitrary worker tools. |
 | **fix-findings** | Use this after receiving a review or audit report and you want to act on it without blindly accepting every claim. It verifies each finding against the current code, fixes confirmed defects, and explains stale, incorrect, or intentional behavior. | Fully harness-neutral. |
+| **[html-review](html-review/SKILL.md)** | Use this when an answer is easier to grasp as a page than as prose and you want to mark it up yourself. The agent writes a local HTML page, opens it in a secured review window, and waits for your annotations and feedback. | Harness-neutral; requires the hardened `html-review` build of [Lavish](https://github.com/kunchenguid/lavish-axi) by Kun Chen (MIT) on `PATH`, and never falls back to the upstream CLI. |
 | **i18n-sweep** | Use this when your app mixes languages, has missing translations, or needs another locale. It finds hardcoded interface text and translation gaps, fills the supported locales, and checks the rendered result. | Fully harness-neutral. |
 | **unslopify** | Use this when a website feels generic or obviously AI-generated and you want it to feel designed for your actual product. It removes decorative badges, standalone card icons, repetitive cards, and empty copy where appropriate, then verifies hierarchy, accessibility, and the rendered design. | Harness-neutral; Impeccable detection is optional. |
 | **sidebar-x** | Use this when your dashboard's navigation changes shape between pages or makes settings, accounts, and organizations hard to find. It builds one consistent sidebar with clear submenus, pinned account and organization controls, permission-aware visibility, and mobile navigation. | Fully harness-neutral and framework-neutral; maps onto the host project's own design tokens. |
@@ -184,6 +185,7 @@ Claude Code documents user and project discovery under [`.claude/skills/`](https
 - **Alternative review:** a selected reviewer replaces only the corresponding default tool and model requirement.
 - **`codex-grok`:** Codex CLI, Grok Build CLI, GPT-6 Astra, and Grok 4.5 because its wrapper enforces provider-specific sandbox and permission flags.
 - **Video skills:** Node.js, Remotion/FFmpeg dependencies, and a user-selected TTS provider plus secret environment variable.
+- **`html-review`:** the hardened `html-review` build of Lavish on `PATH`; the skill never installs or substitutes the upstream `lavish-axi` package.
 - **GitHub operations:** [GitHub CLI](https://cli.github.com/) for PR and review-comment modes.
 
 ## Design notes
