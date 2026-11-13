@@ -10,7 +10,7 @@ Use this skill when Codex should remain the manager and Claude Opus 5.5, accesse
 ## Runtime Defaults
 
 - CLI: `claude`
-- model: `opus`, targeting Claude Opus 5.5 (`claude-opus-5-5`, verified September 26, 2026)
+- model: `opus`, targeting Claude Opus 5.5 (`claude-opus-5-5`, verified November 14, 2026)
 - reasoning: high
 - execution mode: Claude Code `--permission-mode plan`, which is read-only
 

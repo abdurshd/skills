@@ -20,21 +20,21 @@ Host, role, provider, and model are separate choices. For example, Cursor can ho
 
 ## Current coding and reasoning models
 
-Verified against the official provider catalogs on September 26, 2026. This list covers the general-purpose models relevant to these workflows; speech, image, and other specialized models are selected separately.
+Verified against the official provider catalogs on September 26, 2026; Anthropic rows re-verified November 14, 2026. This list covers the general-purpose models relevant to these workflows; speech, image, and other specialized models are selected separately.
 
 | Provider | Model | API model ID | Role |
 | --- | --- | --- | --- |
 | OpenAI | GPT-6 Astra | `gpt-6-astra` | Flagship reasoning, orchestration, and independent review |
 | OpenAI | GPT-6 Sol | `gpt-6-sol` | Coding and agent workflows balancing capability and cost |
 | OpenAI | GPT-6 Luna | `gpt-6-luna` | Focused tasks and high-volume work |
-| Anthropic | Claude Fable 5.1 | `claude-fable-5-1` | Demanding reasoning and long-running orchestration |
+| Anthropic | Claude Fable 5.2 | `claude-fable-5-2` | Demanding reasoning and long-running orchestration |
 | Anthropic | Claude Opus 5.5 | `claude-opus-5-5` | Implementation and independent review |
-| Anthropic | Claude Sonnet 5 | `claude-sonnet-5` | Everyday coding and agent work |
-| Anthropic | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | Simple tasks where speed and cost matter |
+| Anthropic | Claude Sonnet 5.5 | `claude-sonnet-5-5` | Everyday coding and agent work |
+| Anthropic | Claude Haiku 5.5 | `claude-haiku-5-5` | Simple tasks where speed and cost matter |
 
-Sources: [OpenAI model catalog](https://developers.openai.com/api/docs/models), [Anthropic model catalog](https://platform.claude.com/docs/en/models/overview), and [Claude Code model configuration](https://code.claude.com/docs/en/model-config). Claude Mythos 5.1 is restricted to Project Glasswing participants and is not a default for these skills.
+Sources: [OpenAI model catalog](https://developers.openai.com/api/docs/models), [Anthropic model catalog](https://platform.claude.com/docs/en/models/overview), and [Claude Code model configuration](https://code.claude.com/docs/en/model-config). Claude Mythos 5.2 is available only to verified organizations and is not a default for these skills.
 
-Claude Code requires v2.1.280 or later for Opus 5.5 and v2.1.257 or later for Fable 5.1. Alias resolution varies by provider, gateway, environment overrides, and CLI version. Confirm the resolved model; when an alias selects an older release, use the current full model ID or the provider's deployment ID. User-selected models and effort levels continue to override defaults.
+Claude Code requires v2.1.280 or later for Opus 5.5; older versions may resolve `fable` to Fable 5.1 instead of Fable 5.2. Alias resolution varies by provider, gateway, environment overrides, and CLI version. Confirm the resolved model; when an alias selects an older release, use the current full model ID or the provider's deployment ID. User-selected models and effort levels continue to override defaults.
 
 ## Skills
 
@@ -45,8 +45,8 @@ Choose a skill based on what you need next. These 19 skills cover planning, impl
 | **[free-startup-listings](free-startup-listings/SKILL.md)** | Research free directories or publish approved listings. Includes 13 original seeds, nine additional software routes and a dated catalog of 30 more $0 opportunities with dofollow evidence, badge conditions and queues. Prepares copy/assets and verifies approved listings and badge releases. | Fully harness-neutral; requires web research for discovery, an authenticated browser for submissions, and repository/deployment access when badges are in scope. |
 | **[mcp-connector-listings](mcp-connector-listings/SKILL.md)** | Prepare, submit, and verify MCP registry, assistant-store, OAuth provider, and native integration listings. Covers account/production client-ID matching, drafts, publisher profiles, reviewer access, catalog PRs, public availability, health, and backlink evidence. | Fully harness-neutral; uses current official instructions, source access, authenticated browser/provider tools, and Git for catalog PRs. |
 | **ship** | Use this when your changes are ready to commit, push, merge, or turn into a pull request. It checks the diff, keeps temporary files and secrets out of the commit, and reports what still needs verification after shipping. | Fully harness-neutral; requires Git and optionally GitHub CLI. |
-| **fable-opus** | Use this when a large feature or refactor needs several focused implementation workers. One agent plans and supervises the work while isolated workers make changes, then the supervisor verifies the result. | Defaults to Fable 5.1 orchestration and Claude Opus 5.5 through the runtime's latest `opus` model alias for implementation. Both roles and the host are replaceable. |
-| **fable-opus-codex** | Use this when you want delegated implementation followed by an independent code review before shipping. It separates planning, coding, and review, then sends confirmed findings back for fixes. | Defaults to Fable 5.1 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |
+| **fable-opus** | Use this when a large feature or refactor needs several focused implementation workers. One agent plans and supervises the work while isolated workers make changes, then the supervisor verifies the result. | Defaults to Fable 5.2 orchestration and Claude Opus 5.5 through the runtime's latest `opus` model alias for implementation. Both roles and the host are replaceable. |
+| **fable-opus-codex** | Use this when you want delegated implementation followed by an independent code review before shipping. It separates planning, coding, and review, then sends confirmed findings back for fixes. | Defaults to Fable 5.2 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. Orchestrator, implementer, reviewer, models, and host are independently replaceable. |
 | **codex-review** | Use this before coding when you want an OpenAI reviewer to challenge your implementation plan, especially if another provider's model helped write it. It checks the plan against the codebase and iterates on weaknesses for up to five rounds. | Defaults to Codex CLI with GPT-6 Astra, high reasoning, and read-only access. Any read-only coding reviewer can replace it. |
 | **fable-review** | Use this before coding when you want a second opinion on your implementation plan from Claude Fable, especially if you planned with a non-Anthropic model. It stress-tests the approach against the codebase and helps refine it for up to five rounds. | Defaults to Claude Code with its latest Fable alias, high effort, and read-only access. Any read-only coding reviewer can replace it. |
 | **claude-review** | Use this when you have a plan or uncommitted changes and want an independent Claude review, especially after working with a non-Anthropic model or agent. It runs Claude Code in read-only mode to look for correctness, security, and regression issues without changing your files. | Intentionally Claude Code-specific; defaults to `claude`, Opus, high effort, and read-only Plan permission mode. |
@@ -100,7 +100,7 @@ fable-opus-codex
     └── separate explicit commit, push, merge, or PR step
 ```
 
-The current default pairing is Fable 5.1 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. The `fable` and `opus` aliases keep the Anthropic roles on their latest matching releases. Replacing one role does not change the others unless the user asks.
+The current default pairing is Fable 5.2 → Claude Opus 5.5 → GPT-6 Astra through Codex CLI. The `fable` and `opus` aliases keep the Anthropic roles on their latest matching releases. Replacing one role does not change the others unless the user asks.
 
 ## Install
 
@@ -176,7 +176,7 @@ Claude Code documents user and project discovery under [`.claude/skills/`](https
 
 - **Portable core skills:** an Agent Skills-compatible client with the file, shell, browser, or Git capabilities required by the task.
 - **Delegated implementation:** a host-native isolated-worker capability or an authenticated non-interactive coding-agent CLI.
-- **Default `fable-opus`:** access to Fable 5.1 through the latest `fable` selector and the provider or harness's latest `opus` model alias. These currently resolve to Claude Fable 5.1 (`claude-fable-5-1`) and Claude Opus 5.5 (`claude-opus-5-5`); user-selected alternatives replace the corresponding model requirement.
+- **Default `fable-opus`:** access to Fable 5.2 through the latest `fable` selector and the provider or harness's latest `opus` model alias. These currently resolve to Claude Fable 5.2 (`claude-fable-5-2`) and Claude Opus 5.5 (`claude-opus-5-5`); user-selected alternatives replace the corresponding model requirement.
 - **Default `codex-review`:** an installed and authenticated [OpenAI Codex CLI](https://github.com/openai/codex).
 - **Default `fable-review`:** an installed and authenticated [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/cli-usage) with access to its latest `fable` model alias.
 - **`claude-review`:** an installed and authenticated Claude Code CLI with Opus access; the launcher enforces read-only Plan permission mode and does not substitute another harness.
